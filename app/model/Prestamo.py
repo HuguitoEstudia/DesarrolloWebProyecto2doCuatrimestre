@@ -5,7 +5,8 @@ from .Prestamo_Garante import prestamo_garante
 
 class Prestamo(Base):
     __tablename__ = "prestamos"
-    id = Column(Integer)
+    
+    id = Column(Integer, primary_key=True)
     monto = Column(Float)
     moneda = Column(String)
     tasa_interes_mensual = Column(Float)
