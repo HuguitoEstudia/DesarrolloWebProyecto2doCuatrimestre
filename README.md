@@ -1,1 +1,2 @@
-# DesarrolloWebProyecto2doCuatrimestre
+sqlalchemy[standard]
+fastapi
