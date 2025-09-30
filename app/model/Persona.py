@@ -1,5 +1,5 @@
 from sqlalchemy import Date, Column, Integer, String
-from db import Base
+from app.db import Base
 
 class Persona(Base):
 

@@ -1,8 +1,8 @@
 from sqlalchemy import Date, Float, Column, String, Boolean
 from sqlalchemy.orm import relationship
-from Persona import Persona
-from Prestamo import Prestamo
-from Prestamo_Garante import prestamo_garante
+from .Persona import Persona
+from .Prestamo import Prestamo
+from .Prestamo_Garante import prestamo_garante
 
 class Garante(Persona):
 
@@ -14,5 +14,5 @@ class Garante(Persona):
     garantia_descripcion = Column(String)
     garantia_valor = Column(Float)
     # relación many-to-many hacia prestamo
-    prestamo = relationship("Prestamo", secondary=prestamo_garante, back_populates="garante")
+    prestamos = relationship("Prestamo", secondary=prestamo_garante, back_populates="garante")
     # prestamo = relationship("Prestamo", back_populates="garante", cascade="all, delete-orphan")

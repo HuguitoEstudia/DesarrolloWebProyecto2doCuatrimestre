@@ -1,6 +1,6 @@
 from model.Prestatario import Prestatario
-from db import session
-from framework import app
+from app.db import session
+from app.framework import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
 def create_persona(nombre:str="",

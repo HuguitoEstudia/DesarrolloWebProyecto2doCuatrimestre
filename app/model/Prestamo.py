@@ -1,19 +1,18 @@
 from sqlalchemy import Date, Float, Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from db import Base
-from Prestamo_Garante import prestamo_garante
+from app.db import Base
+from .Prestamo_Garante import prestamo_garante
 
 class Prestamo(Base):
     __tablename__ = "prestamos"
-    id = Column()
-    monto = Column()
-    moneda = Column()
-    tasa_interes_mensual = Column()
-    tipo_tasa = Column()
-    numero_cuotas = Column()
-    cuotas_restantes = Column()
-    monto_cuota = Column()
-    saldo_restante = Column()
+    id = Column(Integer)
+    monto = Column(Float)
+    moneda = Column(String)
+    tasa_interes_mensual = Column(Float)
+    cuotas_totales = Column(Integer)
+    cuotas_restantes = Column(Integer)
+    monto_cuota = Column(Float)
+    saldo_restante = Column(Float)
     # claves foráneas a prestatario y garante (cada préstamo tiene uno de cada uno)
     prestatario_id = Column(Integer, ForeignKey("prestatarios.id"))
     garante_id = Column(Integer, ForeignKey("garantes.id"))
