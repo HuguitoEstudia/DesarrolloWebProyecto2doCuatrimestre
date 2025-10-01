@@ -7,8 +7,8 @@ class Prestatario(Persona):
     __tablename__ = "prestatarios"
 
     id = Column(Integer, primary_key=True)
-    fecha_alta = Column(Date)
-    estado_empleo = Column(Boolean)
-    ocupacion = Column(String)
-    ingreso_anual = Column(Float)
+    fecha_alta = Column(Date,nullable=False)
+    estado_empleo = Column(Boolean,nullable=False)
+    ocupacion = Column(String,nullable=True)
+    ingreso_anual = Column(Float,nullable=False)
     prestamos = relationship("Prestamo", back_populates="prestatario", cascade="all, delete-orphan")

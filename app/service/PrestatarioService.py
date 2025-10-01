@@ -1,16 +1,36 @@
+from datetime import date
+from typing import List, Optional
 from model.Prestatario import Prestatario
 from sqlalchemy.orm import Session
-from fastapi import Depends
+from fastapi import Depends,Body
 from db import get_session
 from framework import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
-def create(nombre:str="",apellido:str="",edad:int=0,dni:int=1234567,session: Session = Depends(get_session)):
+def create(nombre:str=Body(...),
+           apellido:str=Body(...),
+           dni:int=Body(...),
+           direccion:str=Body(...),
+           telefono:int=Body(...),
+           email:Optional[str]=Body(None),
+           fecha_alta:date=Body(...),
+           estado_empleo:bool=Body(...),
+           ocupacion:str=Body(...),
+           ingreso_anual:int=Body(...),
+           prestamos:Optional[List[dict]] = Body(None),
+           session: Session = Depends(get_session)):
     
     prestatario = Prestatario(nombre=nombre,
                               apellido=apellido,
-                              edad=edad,
-                              dni=dni)
+                              dni=dni,
+                              direccion=direccion,
+                              telefono=telefono,
+                              email=email,
+                              fecha_alta=fecha_alta,
+                              estado_empleo=estado_empleo,
+                              ocupacion=ocupacion,
+                              ingreso_anual=ingreso_anual,
+                              prestamos=prestamos)
     
     session.add(prestatario)
     session.commit()

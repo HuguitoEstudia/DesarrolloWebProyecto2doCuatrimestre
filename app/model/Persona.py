@@ -6,11 +6,10 @@ class Persona(Base):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True)
-    nombre = Column(String)
-    apellido = Column(String)
-    dni = Column(Integer)
-    fecha_nacimiento = Column(Date)
-    direccion = Column(String)
-    telefono = Column(Integer)
-    email = Column(String)
+    nombre = Column(String,nullable=False)
+    apellido = Column(String,nullable=False)
+    dni = Column(Integer,nullable=False)
+    direccion = Column(String,nullable=False)
+    telefono = Column(Integer,nullable=False)
+    email = Column(String,nullable=True)
     
