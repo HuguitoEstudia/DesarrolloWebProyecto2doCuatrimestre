@@ -1,7 +1,6 @@
 from sqlalchemy import Date, Float, Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from .Persona import Persona
-from .Prestamo import Prestamo
+from model.Persona import Persona
 
 class Prestatario(Persona):
 

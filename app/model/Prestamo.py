@@ -1,7 +1,7 @@
 from sqlalchemy import Date, Float, Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from app.db import Base
-from .Prestamo_Garante import prestamo_garante
+from db import Base
+from model.Prestamo_Garante import prestamo_garante
 
 class Prestamo(Base):
     __tablename__ = "prestamos"

@@ -1,8 +1,8 @@
 from sqlalchemy import Date, Float, Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from .Persona import Persona
-from .Prestamo import Prestamo
-from .Prestamo_Garante import prestamo_garante
+from model.Persona import Persona
+from model.Prestamo import Prestamo
+from model.Prestamo_Garante import prestamo_garante
 
 class Garante(Persona):
 

@@ -1,6 +1,5 @@
 from sqlalchemy import ForeignKey, Table,Column
-# from sqlalchemy.orm import
-from app.db import Base
+from db import Base
 
 # tabla de asociación many-to-many
 prestamo_garante = Table(

@@ -1,9 +1,9 @@
 from model.Prestatario import Prestatario
-from app.db import session
-from app.framework import app
+from db import session
+from framework import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
-def create_persona(nombre:str="",
+def create(nombre:str="",
                    apellido:str="",
                    edad:int=0,
                    dni:int=1234567):
@@ -18,23 +18,23 @@ def create_persona(nombre:str="",
     session.refresh(prestatario)
 
 @app.get("/get_all_prestatarios/",tags=["Prestatario"])
-def get_all_personas():
+def get_all():
     return session.query(Prestatario).all()
 
 @app.get("/get_prestatario_by_id/{item_id}",tags=["Prestatario"])
-def get_persona_by_id(item_id:int):
+def get_by_id(item_id:int):
     response = session.get(Prestatario,item_id)
     if response == None:
-        return {"Persona no encontrada"}
+        return {"Prestatario no encontrada"}
     else:
         return response
 
 
 @app.post("/delete_prestatario_by_id/{item_id}",tags=["Prestatario"])
-def delete_persona_by_id(item_id:int):
+def delete_by_id(item_id:int):
     response = session.get(Prestatario,item_id)
     if response == None:
-        return {"Persona no encontrada"}
+        return {"Prestatario no encontrada"}
     else:
         session.delete(response)
         session.commit()
