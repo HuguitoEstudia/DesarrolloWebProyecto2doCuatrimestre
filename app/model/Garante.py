@@ -9,7 +9,6 @@ class Garante(Persona):
     __tablename__ = "garantes"
     
     id = Column(Integer, primary_key=True)
-    fecha_alta_garante = Column(Date,nullable=False)
     relacion_con_prestatario = Column(String,nullable=False)
     ingreso_anual = Column(Float,nullable=False)
     garantia_descripcion = Column(String,nullable=True)
