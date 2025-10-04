@@ -12,4 +12,4 @@ class Persona(Base):
     direccion = Column(String,nullable=False)
     telefono = Column(Integer,nullable=False)
     email = Column(String,nullable=True)
-    
+    fecha_alta = Column(Date,nullable=False)
