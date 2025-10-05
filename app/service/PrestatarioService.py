@@ -7,7 +7,7 @@ from db import get_session
 from framework import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
-def create(nombre:str=Body(...),
+def create_prestatario(nombre:str=Body(...),
            apellido:str=Body(...),
            dni:int=Body(...),
            direccion:str=Body(...),
@@ -37,11 +37,11 @@ def create(nombre:str=Body(...),
     session.refresh(prestatario)
 
 @app.get("/get_all_prestatarios/",tags=["Prestatario"])
-def get_all(session: Session = Depends(get_session)):
+def find_all_prestatario(session: Session = Depends(get_session)):
     return session.query(Prestatario).all()
 
 @app.get("/get_prestatario_by_id/{item_id}",tags=["Prestatario"])
-def get_by_id(item_id:int,session: Session = Depends(get_session)):
+def find_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
     response = session.get(Prestatario,item_id)
     if response == None:
         return {"Prestatario no encontrada"}
@@ -50,7 +50,7 @@ def get_by_id(item_id:int,session: Session = Depends(get_session)):
 
 
 @app.post("/delete_prestatario_by_id/{item_id}",tags=["Prestatario"])
-def delete_by_id(item_id:int,session: Session = Depends(get_session)):
+def delete_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
     response = session.get(Prestatario,item_id)
     if response == None:
         return {"Prestatario no encontrada"}

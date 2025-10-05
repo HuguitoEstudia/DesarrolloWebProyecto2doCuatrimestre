@@ -6,7 +6,7 @@ class Prestatario(Persona):
 
     __tablename__ = "prestatarios"
 
-    id = Column(Integer, primary_key=True)
+    # id = Column(Integer, primary_key=True)
     estado_empleo = Column(Boolean,nullable=False)
     ocupacion = Column(String,nullable=True)
     ingreso_anual = Column(Float,nullable=False)
