@@ -4,7 +4,7 @@ from model.Prestatario import Prestatario
 from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
-from framework import app
+from app import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
 def create_prestatario(nombre:str=Body(...),
