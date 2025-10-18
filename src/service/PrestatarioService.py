@@ -7,17 +7,17 @@ from db import get_session
 from app import app
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
-def create_prestatario(nombre:str=Body(...),
-           apellido:str=Body(...),
-           dni:int=Body(...),
-           direccion:str=Body(...),
-           telefono:int=Body(...),
-           email:Optional[str]=Body(None),
-           fecha_alta:date=Body(...),
-           estado_empleo:bool=Body(...),
-           ocupacion:str=Body(...),
-           ingreso_anual:int=Body(...),
-           prestamos:Optional[List[dict]] = Body(None),
+def create_prestatario(nombre:str,
+           apellido:str,
+           dni:int,
+           direccion:str,
+           telefono:int,
+           fecha_alta:date,
+           estado_empleo:bool,
+           ocupacion:str,
+           ingreso_anual:int,
+           prestamos:Optional[List[dict]] = [],
+           email:Optional[str]="",
            session: Session = Depends(get_session)):
     
     prestatario = Prestatario(nombre=nombre,
