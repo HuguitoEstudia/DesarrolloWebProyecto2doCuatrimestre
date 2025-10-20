@@ -13,6 +13,7 @@ class Garante(Persona):
     ingreso_anual = Column(Float,nullable=False)
     garantia_descripcion = Column(String,nullable=True)
     garantia_valor = Column(Float,nullable=True)
+    fecha_alta = Column(Date,nullable=False)
     # relación many-to-many hacia prestamo
     prestamos = relationship("Prestamo", secondary=prestamo_garante, back_populates="garante")
     # prestamo = relationship("Prestamo", back_populates="garante", cascade="all, delete-orphan")

@@ -14,6 +14,7 @@ class Prestamo(Base):
     cuotas_restantes = Column(Integer,nullable=False)
     monto_cuota = Column(Float,nullable=False)
     saldo_restante = Column(Float,nullable=False)
+    fecha_prestamo = Column(Date,nullable=False)
     # claves foráneas a prestatario y garante (cada préstamo tiene uno de cada uno)
     prestatario_id = Column(Integer, ForeignKey("prestatarios.id"))
     garante_id = Column(Integer, ForeignKey("garantes.id"))
