@@ -15,7 +15,7 @@ def create_prestamo(
                     cuotas_restantes:int,
                     monto_cuota:float,
                     saldo_restante:float,
-                    fecha_prestamo:date,
+                    fecha_prestamo:str,
                     prestatario:dict,
                     garante:dict,
                     session: Session = Depends(get_session)):
@@ -37,8 +37,8 @@ def create_prestamo(
     session.refresh(prestamo)
 
 
-@app.post("/delete_prestamo_by_id/",tags=["Prestamo"])
-def delete_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
+@app.post("/delete_prestamo/",tags=["Prestamo"])
+def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == item_id).first()
     if response == None:
         return {"Prestamo no encontrado"}

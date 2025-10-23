@@ -13,12 +13,9 @@ def create_garante(
                     dni:int,
                     direccion:str,
                     telefono:int,
-                    fecha_alta:date,
-                    relacion_con_prestatario:str,
                     ingreso_anual:float,
-                    garantia_descripcion:Optional[str]=None,
-                    garantia_valor:Optional[float]=None,
-                    prestamos:Optional[List[dict]] = [],
+                    garante_descripcion:Optional[str]=None,
+                    # prestamos:Optional[List[dict]] = [],
                     email:Optional[str]=None,
                     session: Session = Depends(get_session)):
 
@@ -29,20 +26,18 @@ def create_garante(
                     direccion=direccion,
                     telefono=telefono,
                     email=email,
-                    fecha_alta=fecha_alta,
-                    relacion_con_prestatario=relacion_con_prestatario,
                     ingreso_anual=ingreso_anual,
-                    garantia_descripcion=garantia_descripcion,
-                    garantia_valor=garantia_valor,
-                    prestamos=prestamos)
+                    garante_descripcion=garante_descripcion,
+                    # prestamos=prestamos
+                    )
     
     session.add(garante)
     session.commit()
     session.refresh(garante)
 
 
-@app.post("/delete_garante_by_id/",tags=["Garante"])
-def delete_garante_by_id(item_id:int,session: Session = Depends(get_session)):
+@app.post("/delete_garante/",tags=["Garante"])
+def delete_garante(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.id == item_id).first()
     if response == None:
         return {"Garante no encontrado"}
@@ -75,7 +70,7 @@ def find_garante_by_dni(item_dni:int,session: Session = Depends(get_session)):
 
 
 @app.post("/find_garante_by_nombre_apellido/",tags=["Garante"])
-def find_pgarante_by_nombre_apellido(item_nombre:int,item_apellido:int,session: Session = Depends(get_session)):
+def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(
                                                 Garante.nombre == item_nombre,
                                                 Garante.apellido == item_apellido

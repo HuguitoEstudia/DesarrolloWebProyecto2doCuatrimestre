@@ -5,7 +5,7 @@ class Persona(Base):
 
     __abstract__ = True
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String,nullable=False)
     apellido = Column(String,nullable=False)
     dni = Column(Integer,nullable=False)

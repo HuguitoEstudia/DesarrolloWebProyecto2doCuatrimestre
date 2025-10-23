@@ -6,9 +6,9 @@ class Prestatario(Persona):
 
     __tablename__ = "prestatarios"
 
-    # id = Column(Integer, primary_key=True)
     estado_empleo = Column(Boolean,nullable=False)
     ocupacion = Column(String,nullable=False)
     ingreso_anual = Column(Float,nullable=False)
-    fecha_alta = Column(Date,nullable=False)
+    
+    # relación hacia prestamo
     prestamos = relationship("Prestamo", back_populates="prestatario", cascade="all, delete-orphan")

@@ -1,5 +1,5 @@
 from db import Base,engine
-from model import Garante,Persona,Prestamo_Garante,Prestamo,Prestatario
+from model import Garante,Persona,Prestamo,Prestatario
 import uvicorn
 from fastapi import FastAPI
 
