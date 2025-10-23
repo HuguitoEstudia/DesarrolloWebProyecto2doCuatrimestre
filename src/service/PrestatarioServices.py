@@ -16,7 +16,6 @@ def create_prestatario(
                     estado_empleo:bool,
                     ocupacion:str,
                     ingreso_anual:float,
-                    # prestamos:Optional[List[dict]] = [],
                     email:Optional[str]=None,
                     session: Session = Depends(get_session)):
 
@@ -29,13 +28,47 @@ def create_prestatario(
                             email=email,
                             estado_empleo=estado_empleo,
                             ocupacion=ocupacion,
-                            ingreso_anual=ingreso_anual,
-                            # prestamo=prestamo
+                            ingreso_anual=ingreso_anual
                             )
     
     session.add(prestatario)
     session.commit()
-    session.refresh(prestatario)
+
+
+@app.post("/update_prestatario/",tags=["Prestatario"],)
+def update_prestatario( 
+                    item_id:int,
+                    nombre:Optional[str]=None,
+                    apellido:Optional[str]=None,
+                    dni:Optional[int]=None,
+                    direccion:Optional[str]=None,
+                    telefono:Optional[int]=None,
+                    estado_empleo:Optional[bool]=None,
+                    ocupacion:Optional[str]=None,
+                    ingreso_anual:Optional[float]=None,
+                    # prestamos:Optional[List[dict]] = [],
+                    email:Optional[str]=None,
+                    session: Session = Depends(get_session)):
+    
+    datos = {
+        "nombre":nombre,
+        "apellido":apellido,
+        "dni":dni,
+        "direccion":direccion,
+        "telefono":telefono,
+        "estado_empleo":estado_empleo,
+        "ocupacion":ocupacion,
+        "ingreso_anual":ingreso_anual,
+        "email":email
+    }
+
+    prestatario = session.query(Prestatario).filter(Prestatario.id == item_id).first()
+
+    for campo, valor in datos.items():
+        if valor != None:
+            setattr(prestatario,campo,valor)
+    
+    session.commit()
 
 
 @app.post("/delete_prestatario/",tags=["Prestatario"])

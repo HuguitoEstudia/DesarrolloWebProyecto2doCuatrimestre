@@ -16,8 +16,8 @@ def create_prestamo(
                     monto_cuota:float,
                     saldo_restante:float,
                     fecha_prestamo:str,
-                    prestatario:dict,
-                    garante:dict,
+                    prestatario:int,
+                    garante:int,
                     session: Session = Depends(get_session)):
 
     prestamo = Prestamo(
@@ -34,7 +34,43 @@ def create_prestamo(
 
     session.add(prestamo)
     session.commit()
-    session.refresh(prestamo)
+
+
+@app.post("/update_prestamo/",tags=["Prestamo"],)
+def update_prestamo( 
+                    item_id:int,
+                    monto:Optional[float]=None,
+                    moneda:Optional[str]=None,
+                    tasa_interes_mensual:Optional[float]=None,
+                    cuotas_totales:Optional[int]=None,
+                    cuotas_restantes:Optional[int]=None,
+                    monto_cuota:Optional[float]=None,
+                    saldo_restante:Optional[float]=None,
+                    fecha_prestamo:Optional[str]=None,
+                    prestatario:Optional[dict]=None,
+                    garante:Optional[dict]=None,
+                    session: Session = Depends(get_session)):
+
+    datos = {
+        "monto":monto,
+        "moneda":moneda,
+        "tasa_interes_mensual":tasa_interes_mensual,
+        "cuotas_totales":cuotas_totales,
+        "cuotas_restantes":cuotas_restantes,
+        "monto_cuota":monto_cuota,
+        "saldo_restante":saldo_restante,
+        "fecha_prestamo":fecha_prestamo,
+        "prestatario":prestatario,
+        "garante":garante
+    }
+
+    prestamo = session.query(Prestamo).filter(Prestamo.id == item_id).first()
+
+    for campo, valor in datos.items():
+        if valor != None:
+            setattr(prestamo,campo,valor)
+
+    session.commit()
 
 
 @app.post("/delete_prestamo/",tags=["Prestamo"])

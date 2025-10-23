@@ -15,7 +15,6 @@ def create_garante(
                     telefono:int,
                     ingreso_anual:float,
                     garante_descripcion:Optional[str]=None,
-                    # prestamos:Optional[List[dict]] = [],
                     email:Optional[str]=None,
                     session: Session = Depends(get_session)):
 
@@ -27,13 +26,45 @@ def create_garante(
                     telefono=telefono,
                     email=email,
                     ingreso_anual=ingreso_anual,
-                    garante_descripcion=garante_descripcion,
-                    # prestamos=prestamos
+                    garante_descripcion=garante_descripcion
                     )
     
     session.add(garante)
     session.commit()
-    session.refresh(garante)
+
+
+@app.post("/update_garante/",tags=["Garante"],)
+def update_garante( 
+                    item_id:int,
+                    nombre:Optional[str]=None,
+                    apellido:Optional[str]=None,
+                    dni:Optional[int]=None,
+                    direccion:Optional[str]=None,
+                    telefono:Optional[int]=None,
+                    ingreso_anual:Optional[float]=None,
+                    garante_descripcion:Optional[str]=None,
+                    # prestamos:Optional[List[dict]] = [],
+                    email:Optional[str]=None,
+                    session: Session = Depends(get_session)):
+    
+    datos = {
+        "nombre":nombre,
+        "apellido":apellido,
+        "dni":dni,
+        "direccion":direccion,
+        "telefono":telefono,
+        "ingreso_anual":ingreso_anual,
+        "garante_descripcion":garante_descripcion,
+        "email":email
+    }
+
+    garante = session.query(Garante).filter(Garante.id == item_id).first()
+
+    for campo, valor in datos.items():
+        if valor != None:
+            setattr(garante,campo,valor)
+    
+    session.commit()
 
 
 @app.post("/delete_garante/",tags=["Garante"])
