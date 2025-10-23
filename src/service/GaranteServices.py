@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
 from app import app
+from model.Prestamo import Prestamo
 
 @app.post("/create_garante/",tags=["Garante"],)
 def create_garante( 
@@ -43,7 +44,6 @@ def update_garante(
                     telefono:Optional[int]=None,
                     ingreso_anual:Optional[float]=None,
                     garante_descripcion:Optional[str]=None,
-                    # prestamos:Optional[List[dict]] = [],
                     email:Optional[str]=None,
                     session: Session = Depends(get_session)):
     
@@ -111,4 +111,10 @@ def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: 
     else:
         return response
 
-
+@app.get("/find_garante_by_prestamo/",tags=["Garante"])
+def find_garante_by_prestamo(prestamo_id:int,session: Session = Depends(get_session)):
+    response = session.query(Prestamo).filter(Prestamo.id == prestamo_id).first()
+    if response == None:
+        return {"Garante no encontrado"}
+    else:
+        return response.garante

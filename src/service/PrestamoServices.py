@@ -1,10 +1,44 @@
 from datetime import date
 from typing import List, Optional
+from model.Garante import Garante
 from model.Prestamo import Prestamo
 from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
 from app import app
+from model.Prestatario import Prestatario
+
+
+# @app.post("/create_prestamo/",tags=["Prestamo"],)
+# def create_prestamo( 
+#                     monto:float,
+#                     moneda:str,
+#                     tasa_interes_mensual:float,
+#                     cuotas_totales:int,
+#                     cuotas_restantes:int,
+#                     monto_cuota:float,
+#                     saldo_restante:float,
+#                     fecha_prestamo:str,
+#                     prestatario_id:int,
+#                     garante_id:int,
+#                     session: Session = Depends(get_session)):
+
+#     prestamo = Prestamo(
+#                         monto=monto,
+#                         moneda=moneda,
+#                         tasa_interes_mensual=tasa_interes_mensual,
+#                         cuotas_totales=cuotas_totales,
+#                         cuotas_restantes=cuotas_restantes,
+#                         monto_cuota=monto_cuota,
+#                         saldo_restante=saldo_restante,
+#                         fecha_prestamo=fecha_prestamo,
+#                         prestatario_id=prestatario_id,
+#                         garante_id=garante_id
+#                         )
+
+#     session.add(prestamo)
+#     session.commit()
+
 
 @app.post("/create_prestamo/",tags=["Prestamo"],)
 def create_prestamo( 
@@ -12,25 +46,23 @@ def create_prestamo(
                     moneda:str,
                     tasa_interes_mensual:float,
                     cuotas_totales:int,
-                    cuotas_restantes:int,
-                    monto_cuota:float,
-                    saldo_restante:float,
                     fecha_prestamo:str,
-                    prestatario:int,
-                    garante:int,
+                    prestatario_id:int,
+                    garante_id:int,
                     session: Session = Depends(get_session)):
 
     prestamo = Prestamo(
-                        monto=monto,
-                        moneda=moneda,
-                        tasa_interes_mensual=tasa_interes_mensual,
-                        cuotas_totales=cuotas_totales,
-                        cuotas_restantes=cuotas_restantes,
-                        monto_cuota=monto_cuota,
-                        saldo_restante=saldo_restante,
-                        fecha_prestamo=fecha_prestamo,
-                        prestatario=prestatario,
-                        garante=garante)
+                    monto=monto,
+                    moneda=moneda,
+                    tasa_interes_mensual=tasa_interes_mensual,
+                    cuotas_totales=cuotas_totales,
+                    cuotas_restantes=cuotas_totales,
+                    monto_cuota=monto/cuotas_totales,
+                    saldo_restante=monto,
+                    fecha_prestamo=fecha_prestamo,
+                    prestatario_id=prestatario_id,
+                    garante_id=garante_id
+                    )
 
     session.add(prestamo)
     session.commit()
@@ -47,8 +79,8 @@ def update_prestamo(
                     monto_cuota:Optional[float]=None,
                     saldo_restante:Optional[float]=None,
                     fecha_prestamo:Optional[str]=None,
-                    prestatario:Optional[dict]=None,
-                    garante:Optional[dict]=None,
+                    prestatario_id:Optional[int]=None,
+                    garante_id:Optional[int]=None,
                     session: Session = Depends(get_session)):
 
     datos = {
@@ -60,8 +92,8 @@ def update_prestamo(
         "monto_cuota":monto_cuota,
         "saldo_restante":saldo_restante,
         "fecha_prestamo":fecha_prestamo,
-        "prestatario":prestatario,
-        "garante":garante
+        "prestatario_id":prestatario_id,
+        "garante_id":garante_id
     }
 
     prestamo = session.query(Prestamo).filter(Prestamo.id == item_id).first()
@@ -116,7 +148,7 @@ def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends
 
 
 @app.get("/find_prestamo_by_fecha_prestamo/",tags=["Prestamo"])
-def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:date,session: Session = Depends(get_session)):
+def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.fecha_prestamo == item_fecha_prestamo).all()
     if response == None:
         return {"Prestamo no encontrado"}
@@ -145,6 +177,22 @@ def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = D
 @app.get("/find_prestamo_by_cuotas_restantes/",tags=["Prestamo"])
 def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.cuotas_restantes == item_cuotas_restantes).all()
+    if response == None:
+        return {"Prestamo no encontrado"}
+    else:
+        return response
+
+@app.get("/find_prestamo_by_prestatario/",tags=["Prestamo"])
+def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_session)):
+    response = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
+    if response == None:
+        return {"Prestamo no encontrado"}
+    else:
+        return response
+
+@app.get("/find_prestamo_by_garante/",tags=["Prestamo"])
+def find_prestamo_by_garante(item_id:int,session: Session = Depends(get_session)):
+    response = session.query(Prestamo).filter(Prestamo.garante_id == item_id).all()
     if response == None:
         return {"Prestamo no encontrado"}
     else:

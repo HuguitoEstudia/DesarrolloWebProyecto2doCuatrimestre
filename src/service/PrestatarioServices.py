@@ -1,5 +1,6 @@
 from datetime import date
 from typing import List, Optional
+from model.Prestamo import Prestamo
 from model.Prestatario import Prestatario
 from sqlalchemy.orm import Session
 from fastapi import Depends,Body
@@ -46,7 +47,6 @@ def update_prestatario(
                     estado_empleo:Optional[bool]=None,
                     ocupacion:Optional[str]=None,
                     ingreso_anual:Optional[float]=None,
-                    # prestamos:Optional[List[dict]] = [],
                     email:Optional[str]=None,
                     session: Session = Depends(get_session)):
     
@@ -115,4 +115,10 @@ def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,sessio
     else:
         return response
 
-
+@app.get("/find_prestatario_by_prestamo/",tags=["Prestatario"])
+def find_prestatario_by_prestamo(prestamo_id:int,session: Session = Depends(get_session)):
+    response = session.query(Prestamo).filter(Prestamo.id == prestamo_id).first()
+    if response == None:
+        return {"Prestatario no encontrado"}
+    else:
+        return response.prestatario
