@@ -34,7 +34,7 @@ def create_garante(
     session.commit()
 
 
-@app.post("/update_garante/",tags=["Garante"],)
+@app.put("/update_garante/",tags=["Garante"],)
 def update_garante( 
                     item_id:int,
                     nombre:Optional[str]=None,
@@ -67,7 +67,7 @@ def update_garante(
     session.commit()
 
 
-@app.post("/delete_garante/",tags=["Garante"])
+@app.delete("/delete_garante/",tags=["Garante"])
 def delete_garante(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.id == item_id).first()
     if response == None:
@@ -91,7 +91,7 @@ def find_garante_by_id(item_id:int,session: Session = Depends(get_session)):
         return response
 
 
-@app.post("/find_garante_by_dni/",tags=["Garante"])
+@app.get("/find_garante_by_dni/",tags=["Garante"])
 def find_garante_by_dni(item_dni:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.dni == item_dni).first()
     if response == None:
@@ -100,7 +100,7 @@ def find_garante_by_dni(item_dni:int,session: Session = Depends(get_session)):
         return response
 
 
-@app.post("/find_garante_by_nombre_apellido/",tags=["Garante"])
+@app.get("/find_garante_by_nombre_apellido/",tags=["Garante"])
 def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(
                                                 Garante.nombre == item_nombre,

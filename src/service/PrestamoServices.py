@@ -68,7 +68,7 @@ def create_prestamo(
     session.commit()
 
 
-@app.post("/update_prestamo/",tags=["Prestamo"],)
+@app.put("/update_prestamo/",tags=["Prestamo"],)
 def update_prestamo( 
                     item_id:int,
                     monto:Optional[float]=None,
@@ -105,7 +105,7 @@ def update_prestamo(
     session.commit()
 
 
-@app.post("/delete_prestamo/",tags=["Prestamo"])
+@app.delete("/delete_prestamo/",tags=["Prestamo"])
 def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == item_id).first()
     if response == None:

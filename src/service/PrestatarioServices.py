@@ -36,7 +36,7 @@ def create_prestatario(
     session.commit()
 
 
-@app.post("/update_prestatario/",tags=["Prestatario"],)
+@app.put("/update_prestatario/",tags=["Prestatario"],)
 def update_prestatario( 
                     item_id:int,
                     nombre:Optional[str]=None,
@@ -71,7 +71,7 @@ def update_prestatario(
     session.commit()
 
 
-@app.post("/delete_prestatario/",tags=["Prestatario"])
+@app.delete("/delete_prestatario/",tags=["Prestatario"])
 def delete_prestatario(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.id == item_id).first()
     if response == None:
@@ -95,7 +95,7 @@ def find_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
         return response
 
 
-@app.post("/find_prestatario_by_dni/",tags=["Prestatario"])
+@app.get("/find_prestatario_by_dni/",tags=["Prestatario"])
 def find_prestatario_by_dni(item_dni:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.dni == item_dni).first()
     if response == None:
@@ -104,7 +104,7 @@ def find_prestatario_by_dni(item_dni:int,session: Session = Depends(get_session)
         return response
 
 
-@app.post("/find_prestatario_by_nombre_apellido/",tags=["Prestatario"])
+@app.get("/find_prestatario_by_nombre_apellido/",tags=["Prestatario"])
 def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(
                                                 Prestatario.nombre == item_nombre,
