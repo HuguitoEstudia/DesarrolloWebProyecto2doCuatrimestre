@@ -30,6 +30,9 @@
     <input type="number" id="update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
     <input type="text" id="update_garante_descripcion" placeholder="Ingresa la DESCRIPCION">
     <p></p>
+    <button onclick="delete_garante()">eliminar por id</button>
+    <input type="number" id="item_id_delete" placeholder="Ingresa el ID">
+    <p></p>
     <button onclick="find_all_garante()">listar todos</button>
     <p></p>
     <button onclick="find_garante_by_id()">listar por id</button>
@@ -43,6 +46,7 @@
     <input type="text" id="item_apellido" placeholder="Ingresa el APELLIDO">
     <p></p>
     <button onclick="find_garante_by_prestamo()">listar por prestamo</button>
+    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO">
     <p></p>
     <div id="garantes_pantalla"></div>
     <script src="js/garante.js"></script>

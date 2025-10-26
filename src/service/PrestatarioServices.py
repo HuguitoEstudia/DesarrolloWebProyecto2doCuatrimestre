@@ -1,30 +1,19 @@
 from datetime import date
 from typing import List, Optional
 from model.Prestamo import Prestamo
-from model.Prestatario import Prestatario
+from model.Prestatario import Prestatario, PrestatarioCreate
 from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
 from app import app
-from pydantic import BaseModel
 
-class PrestatarioCreate(BaseModel):
-    nombre: str
-    apellido: str
-    dni: int
-    direccion: str
-    telefono: int
-    email: str
-    estado_empleo: bool
-    ocupacion: str
-    ingreso_anual: float
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
 def create_prestatario( 
                     prestatario: PrestatarioCreate,
                     session: Session = Depends(get_session)):
 
-    prestatario = Prestatario(
+    nuevo_prestatario = Prestatario(
                             nombre=prestatario.nombre,
                             apellido=prestatario.apellido,
                             dni=prestatario.dni,
@@ -36,43 +25,35 @@ def create_prestatario(
                             ingreso_anual=prestatario.ingreso_anual
                             )
     
-    session.add(prestatario)
+    session.add(nuevo_prestatario)
     session.commit()
+    return {"Prestatario creado"}
 
 
 @app.put("/update_prestatario/",tags=["Prestatario"],)
 def update_prestatario( 
                     item_id:int,
-                    nombre:Optional[str]=None,
-                    apellido:Optional[str]=None,
-                    dni:Optional[int]=None,
-                    direccion:Optional[str]=None,
-                    telefono:Optional[int]=None,
-                    estado_empleo:Optional[bool]=None,
-                    ocupacion:Optional[str]=None,
-                    ingreso_anual:Optional[float]=None,
-                    email:Optional[str]=None,
+                    prestatarioUpdate: PrestatarioCreate,
                     session: Session = Depends(get_session)):
-    
-    datos = {
-        "nombre":nombre,
-        "apellido":apellido,
-        "dni":dni,
-        "direccion":direccion,
-        "telefono":telefono,
-        "estado_empleo":estado_empleo,
-        "ocupacion":ocupacion,
-        "ingreso_anual":ingreso_anual,
-        "email":email
-    }
 
     prestatario = session.query(Prestatario).filter(Prestatario.id == item_id).first()
 
-    for campo, valor in datos.items():
-        if valor != None:
-            setattr(prestatario,campo,valor)
-    
-    session.commit()
+    if prestatario == None:
+        return {"Prestatario no encontrado"}
+    else:
+        prestatario.nombre = prestatarioUpdate.nombre # type: ignore
+        prestatario.apellido = prestatarioUpdate.apellido # type: ignore
+        prestatario.dni = prestatarioUpdate.dni # type: ignore
+        prestatario.direccion = prestatarioUpdate.direccion # type: ignore
+        prestatario.telefono = prestatarioUpdate.telefono # type: ignore
+        prestatario.email = prestatarioUpdate.email # type: ignore
+        prestatario.estado_empleo = prestatarioUpdate.estado_empleo # type: ignore
+        prestatario.ocupacion = prestatarioUpdate.ocupacion # type: ignore
+        prestatario.ingreso_anual = prestatarioUpdate.ingreso_anual # type: ignore
+        
+        session.commit()
+
+        return {"Prestatario actualizado"}
 
 
 @app.delete("/delete_prestatario/",tags=["Prestatario"])

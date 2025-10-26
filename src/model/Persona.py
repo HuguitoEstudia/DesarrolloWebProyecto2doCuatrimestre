@@ -1,5 +1,6 @@
 from sqlalchemy import Date, Column, Integer, String
 from db import Base
+from pydantic import BaseModel
 
 class Persona(Base):
 
@@ -12,3 +13,11 @@ class Persona(Base):
     direccion = Column(String,nullable=False)
     telefono = Column(Integer,nullable=False)
     email = Column(String,nullable=False)
+
+class PersonaCreate(BaseModel):
+    nombre: str
+    apellido: str
+    dni: int
+    direccion: str
+    telefono: int
+    email: str

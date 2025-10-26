@@ -1,22 +1,12 @@
 from datetime import date
 from typing import List, Optional
-from model.Garante import Garante
+from model.Garante import Garante, GaranteCreate
 from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
 from app import app
 from model.Prestamo import Prestamo
-from pydantic import BaseModel
 
-class GaranteCreate(BaseModel):
-    nombre: str
-    apellido: str
-    dni: int
-    direccion: str
-    telefono: int
-    email: str
-    ingreso_anual: float
-    garante_descripcion: str
 
 @app.post("/create_garante/",tags=["Garante"],)
 def create_garante( 
@@ -47,16 +37,21 @@ def update_garante(
 
     garante = session.query(Garante).filter(Garante.id == item_id).first()
 
-    garante.nombre = garanteUpdate.nombre # type: ignore
-    garante.apellido = garanteUpdate.apellido # type: ignore
-    garante.dni = garanteUpdate.dni # type: ignore
-    garante.direccion = garanteUpdate.direccion # type: ignore
-    garante.telefono = garanteUpdate.telefono # type: ignore
-    garante.email = garanteUpdate.email # type: ignore
-    garante.ingreso_anual = garanteUpdate.ingreso_anual # type: ignore
-    garante.garante_descripcion = garanteUpdate.garante_descripcion # type: ignore
-    
-    session.commit()
+    if garante == None:
+        return {"Garante no encontrado"}
+    else:
+        garante.nombre = garanteUpdate.nombre # type: ignore
+        garante.apellido = garanteUpdate.apellido # type: ignore
+        garante.dni = garanteUpdate.dni # type: ignore
+        garante.direccion = garanteUpdate.direccion # type: ignore
+        garante.telefono = garanteUpdate.telefono # type: ignore
+        garante.email = garanteUpdate.email # type: ignore
+        garante.ingreso_anual = garanteUpdate.ingreso_anual # type: ignore
+        garante.garante_descripcion = garanteUpdate.garante_descripcion # type: ignore
+        
+        session.commit()
+
+        return {"Garante no actualizado"}
 
 
 @app.delete("/delete_garante/",tags=["Garante"])
@@ -67,6 +62,7 @@ def delete_garante(item_id:int,session: Session = Depends(get_session)):
     else:
         session.delete(response)
         session.commit()
+        return {"Garante eliminado correctamente"}
 
 
 @app.get("/find_all_garante/",tags=["Garante"])
