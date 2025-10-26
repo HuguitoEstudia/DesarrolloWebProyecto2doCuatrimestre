@@ -66,8 +66,11 @@ def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
     if response == None:
         return {"Prestamo no encontrado"}
     else:
-        session.delete(response)
-        session.commit()
+        if response.monto_restante > 0: # type: ignore
+            return {"Queda deuda pendiente"}
+        else:
+            session.delete(response)
+            session.commit()
 
 
 @app.get("/find_all_prestamo/",tags=["Prestamo"])

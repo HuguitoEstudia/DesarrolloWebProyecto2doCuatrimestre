@@ -57,7 +57,7 @@ async function update_prestamo() {
 }
 
 async function delete_prestamo() {
-	const item_id = document.getElementById("item_id_delete").value;
+	const item_id = document.getElementById("prestamo_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_prestamo/?item_id=${item_id}`, {
 		method: "DELETE"
