@@ -73,7 +73,11 @@ def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
 @app.get("/find_all_prestamo/",tags=["Prestamo"])
 def find_all_prestamo(session: Session = Depends(get_session)):
     # lista de diccionario
-    return session.query(Prestamo).all()
+    response = session.query(Prestamo).all()
+    if response == []:
+        return {None}
+    else:
+        return response
 
 
 @app.get("/find_prestamo_by_id/",tags=["Prestamo"])
@@ -90,6 +94,10 @@ def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
 @app.get("/find_prestamo_by_mayor_que_monto/",tags=["Prestamo"])
 def find_prestamo_by_mayor_que_monto(item_monto:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.monto >= item_monto).all()
+    if response == []:
+        return {None}
+    else:
+        return response
     # return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
@@ -101,7 +109,10 @@ def find_prestamo_by_mayor_que_monto(item_monto:float,session: Session = Depends
 @app.get("/find_prestamo_by_menor_que_monto/",tags=["Prestamo"])
 def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.monto <= item_monto).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -112,7 +123,10 @@ def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends
 @app.get("/find_prestamo_by_fecha_prestamo/",tags=["Prestamo"])
 def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.fecha_prestamo == item_fecha_prestamo).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -123,7 +137,10 @@ def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = D
 @app.get("/find_prestamo_by_tasa_interes/",tags=["Prestamo"])
 def find_prestamo_by_tasa_interes(item_tasa_interes:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.tasa_interes == item_tasa_interes).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -134,7 +151,10 @@ def find_prestamo_by_tasa_interes(item_tasa_interes:float,session: Session = Dep
 @app.get("/find_prestamo_by_cuotas_totales/",tags=["Prestamo"])
 def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.cuotas_totales == item_cuotas_totales).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -145,7 +165,10 @@ def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = D
 @app.get("/find_prestamo_by_cuotas_restantes/",tags=["Prestamo"])
 def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.cuotas_restantes == item_cuotas_restantes).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -155,7 +178,10 @@ def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session
 @app.get("/find_prestamo_by_prestatario/",tags=["Prestamo"])
 def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:
@@ -165,7 +191,10 @@ def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_sess
 @app.get("/find_prestamo_by_garante/",tags=["Prestamo"])
 def find_prestamo_by_garante(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.garante_id == item_id).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Prestamo no encontrado"}
     # else:

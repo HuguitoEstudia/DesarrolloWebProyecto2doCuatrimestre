@@ -68,7 +68,11 @@ def delete_garante(item_id:int,session: Session = Depends(get_session)):
 @app.get("/find_all_garante/",tags=["Garante"])
 def find_all_garante(session: Session = Depends(get_session)):
     # lista de diccionarios
-    return session.query(Garante).all()
+    response = session.query(Garante).all()
+    if response == []:
+        return {None}
+    else:
+        return response
 
 
 @app.get("/find_garante_by_id/",tags=["Garante"])
@@ -99,7 +103,10 @@ def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: 
                                                 Garante.nombre == item_nombre,
                                                 Garante.apellido == item_apellido
                                                 ).all()
-    return response
+    if response == []:
+        return {None}
+    else:
+        return response
     # if response == None:
     #     return {"Garante no encontrado"}
     # else:
@@ -109,9 +116,8 @@ def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: 
 @app.get("/find_garante_by_prestamo/",tags=["Garante"])
 def find_garante_by_prestamo(prestamo_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == prestamo_id).first()
-    return response
-    # if response == None:
-    #     return {"Garante no encontrado"}
-    # else:
-    #     # diccionario
-    #     return response.garante
+    if response == None:
+        return {response}
+    else:
+        # diccionario
+        return response.garante
