@@ -60,41 +60,44 @@ def delete_garante(item_id:int,session: Session = Depends(get_session)):
     if response == None:
         return {"Garante no encontrado"}
     else:
-        session.delete(response)
-        session.commit()
-        return {"Garante eliminado correctamente"}
+        comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
+        if comprobar_prestamos == []:
+            session.delete(response)
+            session.commit()
+            return {"Garante eliminado correctamente"}
+        else:
+            return {"Existen prestamos asociados al Garante"}
 
 
 @app.get("/find_all_garante/",tags=["Garante"])
 def find_all_garante(session: Session = Depends(get_session)):
-    # lista de diccionarios
     response = session.query(Garante).all()
     if response == []:
-        return {None}
+        return {"Garante no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
 @app.get("/find_garante_by_id/",tags=["Garante"])
 def find_garante_by_id(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.id == item_id).first()
-    return response
-    # if response == None:
-    #     return {"Garante no encontrado"}
-    # else:
-    #     # diccionario
-    #     return response
+    
+    if response == None:
+        return {"Garante no encontrado"}
+    else:
+        # diccionario
+        return response
 
 
 @app.get("/find_garante_by_dni/",tags=["Garante"])
 def find_garante_by_dni(item_dni:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.dni == item_dni).first()
-    return response
-    # if response == None:
-    #     return {"Garante no encontrado"}
-    # else:
-    #     # diccionario
-    #     return response
+    if response == None:
+        return {"Garante no encontrado"}
+    else:
+        # diccionario
+        return response
 
 
 @app.get("/find_garante_by_nombre_apellido/",tags=["Garante"])
@@ -104,20 +107,16 @@ def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: 
                                                 Garante.apellido == item_apellido
                                                 ).all()
     if response == []:
-        return {None}
+        return {"Garante no encontrado"}
     else:
+        # lista
         return response
-    # if response == None:
-    #     return {"Garante no encontrado"}
-    # else:
-    #     # lista
-    #     return response
 
 @app.get("/find_garante_by_prestamo/",tags=["Garante"])
 def find_garante_by_prestamo(prestamo_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == prestamo_id).first()
     if response == None:
-        return {response}
+        return {"Garante no encontrado"}
     else:
         # diccionario
         return response.garante
