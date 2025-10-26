@@ -83,6 +83,7 @@ def delete_prestatario(item_id:int,session: Session = Depends(get_session)):
 
 @app.get("/find_all_prestatario/",tags=["Prestatario"])
 def find_all_prestatario(session: Session = Depends(get_session)):
+    # diccionario
     return session.query(Prestatario).all()
 
 
@@ -92,6 +93,7 @@ def find_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
     if response == None:
         return {"Prestatario no encontrado"}
     else:
+        # diccionario
         return response
 
 
@@ -101,6 +103,7 @@ def find_prestatario_by_dni(item_dni:int,session: Session = Depends(get_session)
     if response == None:
         return {"Prestatario no encontrado"}
     else:
+        # diccionario
         return response
 
 
@@ -113,6 +116,7 @@ def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,sessio
     if response == None:
         return {"Prestatario no encontrado"}
     else:
+        # diccionario
         return response
 
 @app.get("/find_prestatario_by_prestamo/",tags=["Prestatario"])
@@ -121,4 +125,5 @@ def find_prestatario_by_prestamo(prestamo_id:int,session: Session = Depends(get_
     if response == None:
         return {"Prestatario no encontrado"}
     else:
+        # diccionario
         return response.prestatario

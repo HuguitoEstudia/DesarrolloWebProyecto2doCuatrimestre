@@ -126,6 +126,7 @@ def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # diccionario
         return response
 
 
@@ -135,6 +136,7 @@ def find_prestamo_by_mayo_que_monto(item_monto:float,session: Session = Depends(
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
@@ -144,6 +146,7 @@ def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
@@ -153,6 +156,7 @@ def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = D
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
@@ -162,6 +166,7 @@ def find_prestamo_by_tasa_interes_mensual(item_tasa_interes_mensual:float,sessio
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
@@ -171,6 +176,7 @@ def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = D
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 
@@ -180,6 +186,7 @@ def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 @app.get("/find_prestamo_by_prestatario/",tags=["Prestamo"])
@@ -188,6 +195,7 @@ def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_sess
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
 
 @app.get("/find_prestamo_by_garante/",tags=["Prestamo"])
@@ -196,4 +204,5 @@ def find_prestamo_by_garante(item_id:int,session: Session = Depends(get_session)
     if response == None:
         return {"Prestamo no encontrado"}
     else:
+        # lista de diccionarios
         return response
