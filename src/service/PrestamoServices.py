@@ -17,11 +17,11 @@ def create_prestamo(
     nuevo_prestamo = Prestamo(
                         monto=prestamo.monto,
                         moneda=prestamo.moneda,
-                        tasa_interes_mensual=prestamo.tasa_interes,
+                        tasa_interes=prestamo.tasa_interes,
                         cuotas_totales=prestamo.cuotas_totales,
                         cuotas_restantes=prestamo.cuotas_totales,
                         monto_cuota=prestamo.monto/prestamo.cuotas_totales,
-                        monto_restante_restante=prestamo.monto,
+                        monto_restante=prestamo.monto,
                         fecha_prestamo=prestamo.fecha_prestamo,
                         prestatario_id=prestamo.prestatario_id,
                         garante_id=prestamo.garante_id
@@ -42,15 +42,15 @@ def update_prestamo(
     if prestamo == None:
         return {"Prestamo no encontrado"}
     else:
-        prestamo.monto=prestamoUpdate.monto, # type: ignore
-        prestamo.moneda=prestamoUpdate.moneda, # type: ignore
-        prestamo.tasa_interes=prestamoUpdate.tasa_interes, # type: ignore
-        prestamo.cuotas_totales=prestamoUpdate.cuotas_totales, # type: ignore
-        prestamo.cuotas_restantes=prestamoUpdate.cuotas_restantes, # type: ignore
-        prestamo.monto_cuota=prestamoUpdate.monto_cuota, # type: ignore
-        prestamo.monto_restante=prestamoUpdate.monto_restante, # type: ignore
-        prestamo.fecha_prestamo=prestamoUpdate.fecha_prestamo, # type: ignore
-        prestamo.prestatario_id=prestamoUpdate.prestatario_id, # type: ignore
+        prestamo.monto=prestamoUpdate.monto # type: ignore
+        prestamo.moneda=prestamoUpdate.moneda # type: ignore
+        prestamo.tasa_interes=prestamoUpdate.tasa_interes # type: ignore
+        prestamo.cuotas_totales=prestamoUpdate.cuotas_totales # type: ignore
+        prestamo.cuotas_restantes=prestamoUpdate.cuotas_restantes # type: ignore
+        prestamo.monto_cuota=prestamoUpdate.monto_cuota # type: ignore
+        prestamo.monto_restante=prestamoUpdate.monto_restante # type: ignore
+        prestamo.fecha_prestamo=prestamoUpdate.fecha_prestamo # type: ignore
+        prestamo.prestatario_id=prestamoUpdate.prestatario_id # type: ignore
         prestamo.garante_id=prestamoUpdate.garante_id # type: ignore
 
         session.commit()
@@ -68,6 +68,7 @@ def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
 
 @app.get("/find_all_prestamo/",tags=["Prestamo"])
 def find_all_prestamo(session: Session = Depends(get_session)):
+    # lista de diccionario
     return session.query(Prestamo).all()
 
 
@@ -82,7 +83,7 @@ def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
 
 
 @app.get("/find_prestamo_by_mayor_que_monto/",tags=["Prestamo"])
-def find_prestamo_by_mayo_que_monto(item_monto:float,session: Session = Depends(get_session)):
+def find_prestamo_by_mayor_que_monto(item_monto:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.monto >= item_monto).all()
     if response == None:
         return {"Prestamo no encontrado"}
@@ -111,9 +112,9 @@ def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = D
         return response
 
 
-@app.get("/find_prestamo_by_tasa_interes_mensual/",tags=["Prestamo"])
-def find_prestamo_by_tasa_interes(item_tasa_interes_mensual:float,session: Session = Depends(get_session)):
-    response = session.query(Prestamo).filter(Prestamo.tasa_interes_mensual == item_tasa_interes_mensual).all()
+@app.get("/find_prestamo_by_tasa_interes/",tags=["Prestamo"])
+def find_prestamo_by_tasa_interes(item_tasa_interes:float,session: Session = Depends(get_session)):
+    response = session.query(Prestamo).filter(Prestamo.tasa_interes == item_tasa_interes).all()
     if response == None:
         return {"Prestamo no encontrado"}
     else:

@@ -27,17 +27,17 @@ async function create_garante() {
 }
 
 async function update_garante() {
-	const item_id = document.getElementById("update_id").value;
+	const item_id = document.getElementById("garante_update_id").value;
 
 	const updateGarante = {
-		nombre: document.getElementById("update_nombre").value,
-		apellido: document.getElementById("update_apellido").value,
-		dni: document.getElementById("update_dni").value,
-		direccion: document.getElementById("update_direccion").value,
-		telefono: document.getElementById("update_telefono").value,
-		email: document.getElementById("update_email").value,
-		ingreso_anual: document.getElementById("update_ingreso_anual").value,
-		garante_descripcion: document.getElementById("update_garante_descripcion").value,
+		nombre: document.getElementById("garante_update_nombre").value,
+		apellido: document.getElementById("garante_update_apellido").value,
+		dni: document.getElementById("garante_update_dni").value,
+		direccion: document.getElementById("garante_update_direccion").value,
+		telefono: document.getElementById("garante_update_telefono").value,
+		email: document.getElementById("garante_update_email").value,
+		ingreso_anual: document.getElementById("garante_update_ingreso_anual").value,
+		garante_descripcion: document.getElementById("garante_update_garante_descripcion").value,
 	};
 
 	const response = await fetch(`${BASE_URL}/update_garante/?item_id=${item_id}`, {
@@ -56,7 +56,7 @@ async function update_garante() {
 }
 
 async function delete_garante() {
-	const item_id = document.getElementById("item_id_delete").value;
+	const item_id = document.getElementById("garante_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_garante/?item_id=${item_id}`, {
 		method: "DELETE"
@@ -80,7 +80,7 @@ async function find_all_garante() {
 }
 
 async function find_garante_by_id() {
-	const item_id = document.getElementById("item_id").value;
+	const item_id = document.getElementById("garante_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_garante_by_id/?item_id=${item_id}`);
 
@@ -92,7 +92,7 @@ async function find_garante_by_id() {
 }
 
 async function find_garante_by_dni() {
-	const item_dni = document.getElementById("item_dni").value;
+	const item_dni = document.getElementById("garante_dni").value;
 
 	const response = await fetch(`${BASE_URL}/find_garante_by_dni/?item_dni=${item_dni}`);
 
@@ -104,9 +104,9 @@ async function find_garante_by_dni() {
 }
 
 async function find_garante_by_nombre_apellido() {
-	const item_nombre = document.getElementById("item_nombre").value;
+	const item_nombre = document.getElementById("garante_nombre").value;
 
-	const item_apellido = document.getElementById("item_apellido").value;
+	const item_apellido = document.getElementById("garante_apellido").value;
 
 	const response = await fetch(
 		`${BASE_URL}/find_garante_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`

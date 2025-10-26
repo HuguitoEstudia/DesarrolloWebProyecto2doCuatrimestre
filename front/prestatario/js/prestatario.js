@@ -28,18 +28,18 @@ async function create_prestatario() {
 }
 
 async function update_prestatario() {
-	const item_id = document.getElementById("update_id").value;
+	const item_id = document.getElementById("prestatario_update_id").value;
 
 	const updatePrestatario = {
-		nombre: document.getElementById("update_nombre").value,
-		apellido: document.getElementById("update_apellido").value,
-		dni: document.getElementById("update_dni").value,
-		direccion: document.getElementById("update_direccion").value,
-		telefono: document.getElementById("update_telefono").value,
-		email: document.getElementById("update_email").value,
-		estado_empleo: document.getElementById("update_estado_empleo").checked,
-        ocupacion: document.getElementById("update_ocupacion").value,
-		ingreso_anual: document.getElementById("update_ingreso_anual").value
+		nombre: document.getElementById("prestatario_update_nombre").value,
+		apellido: document.getElementById("prestatario_update_apellido").value,
+		dni: document.getElementById("prestatario_update_dni").value,
+		direccion: document.getElementById("prestatario_update_direccion").value,
+		telefono: document.getElementById("prestatario_update_telefono").value,
+		email: document.getElementById("prestatario_update_email").value,
+		estado_empleo: document.getElementById("prestatario_update_estado_empleo").checked,
+        ocupacion: document.getElementById("prestatario_update_ocupacion").value,
+		ingreso_anual: document.getElementById("prestatario_update_ingreso_anual").value
 	};
 
 	const response = await fetch(`${BASE_URL}/update_prestatario/?item_id=${item_id}`, {
@@ -58,7 +58,7 @@ async function update_prestatario() {
 }
 
 async function delete_prestatario() {
-	const item_id = document.getElementById("item_id_delete").value;
+	const item_id = document.getElementById("prestatario_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${item_id}`, {
 		method: "DELETE"
@@ -82,7 +82,7 @@ async function find_all_prestatario() {
 }
 
 async function find_prestatario_by_id() {
-	const item_id = document.getElementById("item_id").value;
+	const item_id = document.getElementById("prestatario_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestatario_by_id/?item_id=${item_id}`);
 
@@ -94,7 +94,7 @@ async function find_prestatario_by_id() {
 }
 
 async function find_prestatario_by_dni() {
-	const item_dni = document.getElementById("item_dni").value;
+	const item_dni = document.getElementById("prestatario_dni").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestatario_by_dni/?item_dni=${item_dni}`);
 
@@ -106,9 +106,9 @@ async function find_prestatario_by_dni() {
 }
 
 async function find_prestatario_by_nombre_apellido() {
-	const item_nombre = document.getElementById("item_nombre").value;
+	const item_nombre = document.getElementById("prestatario_nombre").value;
 
-	const item_apellido = document.getElementById("item_apellido").value;
+	const item_apellido = document.getElementById("prestatario_apellido").value;
 
 	const response = await fetch(
 		`${BASE_URL}/find_prestatario_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`

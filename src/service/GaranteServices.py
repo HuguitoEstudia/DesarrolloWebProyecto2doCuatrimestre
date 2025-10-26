@@ -96,11 +96,11 @@ def find_pgarante_by_nombre_apellido(item_nombre:str,item_apellido:str,session: 
     response = session.query(Garante).filter(
                                                 Garante.nombre == item_nombre,
                                                 Garante.apellido == item_apellido
-                                                ).first()
+                                                ).all()
     if response == None:
         return {"Garante no encontrado"}
     else:
-        # diccionario
+        # lista
         return response
 
 @app.get("/find_garante_by_prestamo/",tags=["Garante"])

@@ -97,11 +97,11 @@ def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,sessio
     response = session.query(Prestatario).filter(
                                                 Prestatario.nombre == item_nombre,
                                                 Prestatario.apellido == item_apellido
-                                                ).first()
-    if response == None:
+                                                ).all()
+    if response == []:
         return {"Prestatario no encontrado"}
     else:
-        # diccionario
+        # lista
         return response
 
 @app.get("/find_prestatario_by_prestamo/",tags=["Prestatario"])

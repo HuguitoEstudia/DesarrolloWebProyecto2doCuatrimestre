@@ -8,52 +8,63 @@
 </head>
 
 <body>
-    <p>Prestatarios</p>
-    <button onclick="create_prestatario()">crear prestatario</button>
-    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="dni" placeholder="Ingresa el DNI">
-    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="email" placeholder="Ingresa el EMAIL">
-    <input type="checkbox" id="estado_empleo">
-    <label for="estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
-    <input type="text" id="ocupacion" placeholder="Ingresa la OCUPACION">
-    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <p>Prestamo</p>
+    <button onclick="create_prestamo()">crear prestamo</button>
+    <input type="number" id="monto" placeholder="Ingresa el MONTO">
+    <input type="text" id="moneda" placeholder="Ingresa el MONEDA">
+    <input type="number" id="tasa_interes" placeholder="Ingresa el TASA DE INTERES">
+    <input type="number" id="cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES">
+    <input type="text" id="fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO">
+    <input type="number" id="prestatario_id" placeholder="Ingresa el PRESTATARIO">
+    <input type="number" id="garante_id" placeholder="Ingresa el GARANTE">
     <p></p>
-    <button onclick="update_prestatario()">actualizar prestatario</button>
-    <input type="number" id="update_id" placeholder="Ingresa el ID">
-    <input type="text" id="update_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="update_apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="update_dni" placeholder="Ingresa el DNI">
-    <input type="text" id="update_direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="update_telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="update_email" placeholder="Ingresa el EMAIL">
-    <input type="checkbox" id="update_estado_empleo">
-    <label for="update_estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
-    <input type="text" id="update_ocupacion" placeholder="Ingresa la OCUPACION">
-    <input type="number" id="update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <button onclick="update_prestamo()">actualizar prestamo</button>
+    <input type="number" id="prestamo_update_id" placeholder="Ingresa el ID">
+    <input type="number" id="prestamo_update_monto" placeholder="Ingresa el MONTO">
+    <input type="text" id="prestamo_update_moneda" placeholder="Ingresa el MONEDA">
+    <input type="number" id="prestamo_update_tasa_interes" placeholder="Ingresa el TASA DE INTERES">
+    <input type="number" id="prestamo_update_cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES">
+    <input type="number" id="prestamo_update_cuotas_restantes" placeholder="Ingresa la CUOTAS RESTANTES">
+    <input type="number" id="prestamo_update_monto_cuota" placeholder="Ingresa el MONTO DE LAS CUOTAS">
+    <input type="number" id="prestamo_update_monto_restante" placeholder="Ingresa el MONTO RESTANTE">
+    <input type="text" id="prestamo_update_fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO">
+    <input type="number" id="prestamo_update_prestatario_id" placeholder="Ingresa el PRESTATARIO">
+    <input type="number" id="prestamo_update_garante_id" placeholder="Ingresa el GARANTE">
     <p></p>
-    <button onclick="delete_prestatario()">eliminar por id</button>
-    <input type="number" id="item_id_delete" placeholder="Ingresa el ID">
+    <button onclick="delete_prestamo()">eliminar por id</button>
+    <input type="number" id="prestamo_id_delete" placeholder="Ingresa el ID">
     <p></p>
-    <button onclick="find_all_prestatario()">listar todos</button>
+    <button onclick="find_all_prestamo()">listar todos</button>
     <p></p>
-    <button onclick="find_prestatario_by_id()">listar por id</button>
-    <input type="number" id="item_id" placeholder="Ingresa el ID">
+    <button onclick="find_prestamo_by_id()">listar por id</button>
+    <input type="number" id="prestamo_id" placeholder="Ingresa el ID">
     <p></p>
-    <button onclick="find_prestatario_by_dni()">listar por dni</button>
-    <input type="number" id="item_dni" placeholder="Ingresa el DNI">
+    <button onclick="find_prestamo_by_mayor_que_monto()">listar por monto mayor que</button>
+    <input type="number" id="prestamo_mayor_que_monto" placeholder="Ingresa el MONTO">
     <p></p>
-    <button onclick="find_prestatario_by_nombre_apellido()">listar por nombre y apellido</button>
-    <input type="text" id="item_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="item_apellido" placeholder="Ingresa el APELLIDO">
+    <button onclick="find_prestamo_by_menor_que_monto()">listar por monto menor que</button>
+    <input type="number" id="prestamo_menor_que_monto" placeholder="Ingresa el MONTO">
     <p></p>
-    <button onclick="find_prestatario_by_prestamo()">listar por prestamo</button>
-    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO">
+    <button onclick="find_prestamo_by_fecha_prestamo()">listar por fecha</button>
+    <input type="text" id="prestamo_fecha" placeholder="Ingresa la FECHA">
     <p></p>
-    <div id="prestatarios_pantalla"></div>
-    <script src="js/prestatario.js"></script>
+    <button onclick="find_prestamo_by_tasa_interes()">listar por tasa de interes</button>
+    <input type="number" id="prestamo_tasa_interes" placeholder="Ingresa la TASA DE INTERES">
+    <p></p>
+    <button onclick="find_prestamo_by_cuotas_totales()">listar por cuotas totales</button>
+    <input type="number" id="prestamo_cuotas_totales" placeholder="Ingresa las CUOTAS TOTALES">
+    <p></p>
+    <button onclick="find_prestamo_by_cuotas_restantes()">listar por cuotas restantes</button>
+    <input type="number" id="prestamo_cuotas_restantes" placeholder="Ingresa las CUOTAS RESTANTES">
+    <p></p>
+    <button onclick="find_prestamo_by_prestatario()">listar por prestatario</button>
+    <input type="number" id="prestamo_prestatario_id" placeholder="Ingresa el PRESTATARIO">
+    <p></p>
+    <button onclick="find_prestamo_by_garante()">listar por garante</button>
+    <input type="number" id="prestamo_garante_id" placeholder="Ingresa el GARANTE">
+    <p></p>
+    <div id="prestamos_pantalla"></div>
+    <script src="js/prestamo.js"></script>
 </body>
 
 </html>
