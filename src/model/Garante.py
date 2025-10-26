@@ -9,7 +9,7 @@ class Garante(Persona):
     __tablename__ = "garantes"
     
     ingreso_anual = Column(Float,nullable=False)
-    garante_descripcion = Column(String,nullable=True)
+    garante_descripcion = Column(String,nullable=False)
 
     # relación hacia prestamo
     prestamos = relationship("Prestamo", back_populates="garante", cascade="all, delete-orphan")

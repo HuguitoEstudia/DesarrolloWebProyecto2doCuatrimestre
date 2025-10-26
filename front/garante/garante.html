@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <p>Garantes
-    </p>
-    <button onclick="mostrarGarantes()">listar_todos</button>
+    <p>Garantes</p>
+    <button onclick="create_garante()">crear garante</button>
+    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE">
+    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO">
+    <input type="number" id="dni" placeholder="Ingresa el DNI">
+    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION">
+    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO">
+    <input type="text" id="email" placeholder="Ingresa el EMAIL">
+    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <input type="text" id="garante_descripcion" placeholder="Ingresa la DESCRIPCION">
+    <p></p>
+    <button onclick="update_garante()">actualizar garante</button>
+    <input type="number" id="update_id" placeholder="Ingresa el ID">
+    <input type="text" id="update_nombre" placeholder="Ingresa el NOMBRE">
+    <input type="text" id="update_apellido" placeholder="Ingresa el APELLIDO">
+    <input type="number" id="update_dni" placeholder="Ingresa el DNI">
+    <input type="text" id="update_direccion" placeholder="Ingresa la DIRECCION">
+    <input type="number" id="update_telefono" placeholder="Ingresa el TELEFONO">
+    <input type="text" id="update_email" placeholder="Ingresa el EMAIL">
+    <input type="number" id="update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <input type="text" id="update_garante_descripcion" placeholder="Ingresa la DESCRIPCION">
+    <p></p>
+    <button onclick="find_all_garante()">listar todos</button>
+    <p></p>
+    <button onclick="find_garante_by_id()">listar por id</button>
+    <input type="number" id="item_id" placeholder="Ingresa el ID">
+    <p></p>
+    <button onclick="find_garante_by_dni()">listar por dni</button>
+    <input type="number" id="item_dni" placeholder="Ingresa el DNI">
+    <p></p>
+    <button onclick="find_garante_by_nombre_apellido()">listar por nombre y apellido</button>
+    <input type="text" id="item_nombre" placeholder="Ingresa el NOMBRE">
+    <input type="text" id="item_apellido" placeholder="Ingresa el APELLIDO">
+    <p></p>
+    <button onclick="find_garante_by_prestamo()">listar por prestamo</button>
+    <p></p>
     <div id="garantes_pantalla"></div>
     <script src="js/garante.js"></script>
 </body>
+
 </html>

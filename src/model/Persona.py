@@ -11,4 +11,4 @@ class Persona(Base):
     dni = Column(Integer,nullable=False)
     direccion = Column(String,nullable=False)
     telefono = Column(Integer,nullable=False)
-    email = Column(String,nullable=True)
+    email = Column(String,nullable=False)

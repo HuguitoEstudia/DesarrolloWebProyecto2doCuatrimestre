@@ -6,30 +6,34 @@ from sqlalchemy.orm import Session
 from fastapi import Depends,Body
 from db import get_session
 from app import app
+from pydantic import BaseModel
+
+class PrestatarioCreate(BaseModel):
+    nombre: str
+    apellido: str
+    dni: int
+    direccion: str
+    telefono: int
+    email: str
+    estado_empleo: bool
+    ocupacion: str
+    ingreso_anual: float
 
 @app.post("/create_prestatario/",tags=["Prestatario"],)
 def create_prestatario( 
-                    nombre:str,
-                    apellido:str,
-                    dni:int,
-                    direccion:str,
-                    telefono:int,
-                    estado_empleo:bool,
-                    ocupacion:str,
-                    ingreso_anual:float,
-                    email:Optional[str]=None,
+                    prestatario: PrestatarioCreate,
                     session: Session = Depends(get_session)):
 
     prestatario = Prestatario(
-                            nombre=nombre,
-                            apellido=apellido,
-                            dni=dni,
-                            direccion=direccion,
-                            telefono=telefono,
-                            email=email,
-                            estado_empleo=estado_empleo,
-                            ocupacion=ocupacion,
-                            ingreso_anual=ingreso_anual
+                            nombre=prestatario.nombre,
+                            apellido=prestatario.apellido,
+                            dni=prestatario.dni,
+                            direccion=prestatario.direccion,
+                            telefono=prestatario.telefono,
+                            email=prestatario.email,
+                            estado_empleo=prestatario.estado_empleo,
+                            ocupacion=prestatario.ocupacion,
+                            ingreso_anual=prestatario.ingreso_anual
                             )
     
     session.add(prestatario)

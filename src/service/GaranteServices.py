@@ -6,63 +6,55 @@ from fastapi import Depends,Body
 from db import get_session
 from app import app
 from model.Prestamo import Prestamo
+from pydantic import BaseModel
+
+class GaranteCreate(BaseModel):
+    nombre: str
+    apellido: str
+    dni: int
+    direccion: str
+    telefono: int
+    email: str
+    ingreso_anual: float
+    garante_descripcion: str
 
 @app.post("/create_garante/",tags=["Garante"],)
 def create_garante( 
-                    nombre:str,
-                    apellido:str,
-                    dni:int,
-                    direccion:str,
-                    telefono:int,
-                    ingreso_anual:float,
-                    garante_descripcion:Optional[str]=None,
-                    email:Optional[str]=None,
+                    garante: GaranteCreate,
                     session: Session = Depends(get_session)):
 
-    garante = Garante(  
-                    nombre=nombre,
-                    apellido=apellido,
-                    dni=dni,
-                    direccion=direccion,
-                    telefono=telefono,
-                    email=email,
-                    ingreso_anual=ingreso_anual,
-                    garante_descripcion=garante_descripcion
-                    )
+    nuevo_garante = Garante(
+                            nombre=garante.nombre,
+                            apellido=garante.apellido,
+                            dni=garante.dni,
+                            direccion=garante.direccion,
+                            telefono=garante.telefono,
+                            email=garante.email,
+                            ingreso_anual=garante.ingreso_anual,
+                            garante_descripcion=garante.garante_descripcion
+                            )
     
-    session.add(garante)
+    session.add(nuevo_garante)
     session.commit()
+    return {"Garante creado"}
 
 
 @app.put("/update_garante/",tags=["Garante"],)
 def update_garante( 
                     item_id:int,
-                    nombre:Optional[str]=None,
-                    apellido:Optional[str]=None,
-                    dni:Optional[int]=None,
-                    direccion:Optional[str]=None,
-                    telefono:Optional[int]=None,
-                    ingreso_anual:Optional[float]=None,
-                    garante_descripcion:Optional[str]=None,
-                    email:Optional[str]=None,
+                    garanteUpdate: GaranteCreate,
                     session: Session = Depends(get_session)):
-    
-    datos = {
-        "nombre":nombre,
-        "apellido":apellido,
-        "dni":dni,
-        "direccion":direccion,
-        "telefono":telefono,
-        "ingreso_anual":ingreso_anual,
-        "garante_descripcion":garante_descripcion,
-        "email":email
-    }
 
     garante = session.query(Garante).filter(Garante.id == item_id).first()
 
-    for campo, valor in datos.items():
-        if valor != None:
-            setattr(garante,campo,valor)
+    garante.nombre = garanteUpdate.nombre # type: ignore
+    garante.apellido = garanteUpdate.apellido # type: ignore
+    garante.dni = garanteUpdate.dni # type: ignore
+    garante.direccion = garanteUpdate.direccion # type: ignore
+    garante.telefono = garanteUpdate.telefono # type: ignore
+    garante.email = garanteUpdate.email # type: ignore
+    garante.ingreso_anual = garanteUpdate.ingreso_anual # type: ignore
+    garante.garante_descripcion = garanteUpdate.garante_descripcion # type: ignore
     
     session.commit()
 
