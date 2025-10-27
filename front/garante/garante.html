@@ -1,78 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gestión · Garantes</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <p>Garantes</p>
-    <form onsubmit="create_garante(event)">
-        <button type="submit">crear garante</button>
-        <!-- <button onclick="create_garante()">crear garante</button> -->
-        <input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required>
-        <input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required>
-        <input type="number" id="dni" placeholder="Ingresa el DNI" required>
-        <input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required>
-        <input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required>
-        <input type="text" id="email" placeholder="Ingresa el EMAIL" required>
-        <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
-        <input type="text" id="garante_descripcion" placeholder="Ingresa la DESCRIPCION" required>
-    </form>
-    <p></p>
-    <form onsubmit="update_garante(event)">
-        <button type="submit">actualizar garante</button>
-        <!-- <button onclick="update_garante()">actualizar garante</button> -->
-        <input type="number" id="garante_update_id" placeholder="Ingresa el ID" required>
-        <input type="text" id="garante_update_nombre" placeholder="Ingresa el NOMBRE" required>
-        <input type="text" id="garante_update_apellido" placeholder="Ingresa el APELLIDO" required>
-        <input type="number" id="garante_update_dni" placeholder="Ingresa el DNI" required>
-        <input type="text" id="garante_update_direccion" placeholder="Ingresa la DIRECCION" required>
-        <input type="number" id="garante_update_telefono" placeholder="Ingresa el TELEFONO" required>
-        <input type="text" id="garante_update_email" placeholder="Ingresa el EMAIL" required>
-        <input type="number" id="garante_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
-        <input type="text" id="garante_update_garante_descripcion" placeholder="Ingresa la DESCRIPCION" required>
-    </form>
-    <p></p>
-    <form onsubmit="delete_garante(event)">
-        <button type="submit">eliminar por id</button>
-        <!-- <button onclick="delete_garante()">eliminar por id</button> -->
-        <input type="number" id="garante_id_delete" placeholder="Ingresa el ID" required>
-    </form>
-    <p></p>
-    <form onsubmit="find_all_garante(event)">
-        <button type="submit">listar todos</button>
-        <!-- <button onclick="find_all_garante()">listar todos</button> -->
-    </form>
-    <p></p>
-    <form onsubmit="find_garante_by_id(event)">
-        <button type="submit">listar por id</button>
-        <!-- <button onclick="find_garante_by_id()">listar por id</button> -->
-        <input type="number" id="garante_id" placeholder="Ingresa el ID" required>
-    </form>
-    <p></p>
-    <form onsubmit="find_garante_by_dni(event)">
-        <button type="submit">listar por dni</button>
-        <!-- <button onclick="find_garante_by_dni()">listar por dni</button> -->
-        <input type="number" id="garante_dni" placeholder="Ingresa el DNI" required>
-    </form>
-    <p></p>
-    <form onsubmit="find_garante_by_nombre_apellido(event)">
-        <button type="submit">listar por nombre y apellido</button>
-        <!-- <button onclick="find_garante_by_nombre_apellido()">listar por nombre y apellido</button> -->
-        <input type="text" id="garante_nombre" placeholder="Ingresa el NOMBRE" required>
-        <input type="text" id="garante_apellido" placeholder="Ingresa el APELLIDO" required>
-    </form>
-    <p></p>
-    <form onsubmit="find_garante_by_prestamo(event)">
-        <button type="submit">listar por prestamo</button>
-        <!-- <button onclick="find_garante_by_prestamo()">listar por prestamo</button> -->
-        <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required>
-    </form>
-    <p></p>
-    <div id="garantes_pantalla"></div>
+    <header class="header">
+        <div class="brand">
+            <div class="logo">SG</div>
+            <div>
+                <div style="font-weight:800">Sistema de Gestión</div>
+                <div style="font-size:13px;color:var(--muted)">Garantes</div>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="../prestatario/prestatario.html">Prestatarios</a>
+            <a href="../prestamo/prestamo.html">Préstamos</a>
+            <a href="../garante/garante.html" class="active">Garantes</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <aside class="card" aria-label="panel de acciones">
+            <div class="tabs" role="tablist" aria-label="Acciones garante">
+                <button class="tab-btn active" data-target="crear" role="tab" aria-selected="true">Crear</button>
+                <button class="tab-btn" data-target="actualizar" role="tab">Actualizar</button>
+                <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button>
+                <button class="tab-btn" data-target="listar" role="tab">Buscar</button>
+            </div>
+
+            <div id="crear" class="panel active" role="tabpanel">
+                <form onsubmit="create_garante(event)">
+                    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required>
+                    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required>
+                    <input type="number" id="dni" placeholder="Ingresa el DNI" required>
+                    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required>
+                    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required>
+                    <input type="text" id="email" placeholder="Ingresa el EMAIL" required>
+                    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
+                    <input type="text" id="garante_descripcion" placeholder="Ingresa la DESCRIPCION" required>
+                    <button type="submit">Crear garante</button>
+                </form>
+            </div>
+
+            <div id="actualizar" class="panel" role="tabpanel">
+                <form onsubmit="update_garante(event)">
+                    <input type="number" id="garante_update_id" placeholder="Ingresa el ID" required>
+                    <input type="text" id="garante_update_nombre" placeholder="Ingresa el NOMBRE" required>
+                    <input type="text" id="garante_update_apellido" placeholder="Ingresa el APELLIDO" required>
+                    <input type="number" id="garante_update_dni" placeholder="Ingresa el DNI" required>
+                    <input type="text" id="garante_update_direccion" placeholder="Ingresa la DIRECCION" required>
+                    <input type="number" id="garante_update_telefono" placeholder="Ingresa el TELEFONO" required>
+                    <input type="text" id="garante_update_email" placeholder="Ingresa el EMAIL" required>
+                    <input type="number" id="garante_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL"
+                        required>
+                    <input type="text" id="garante_update_garante_descripcion" placeholder="Ingresa la DESCRIPCION"
+                        required>
+                    <button type="submit">Actualizar garante</button>
+                </form>
+            </div>
+
+            <div id="eliminar" class="panel" role="tabpanel">
+                <form onsubmit="delete_garante(event)">
+                    <input type="number" id="garante_id_delete" placeholder="Ingresa el ID" required>
+                    <button type="submit">Eliminar por ID</button>
+                </form>
+            </div>
+
+            <div id="listar" class="panel" role="tabpanel">
+                <form onsubmit="find_all_garante(event)">
+                    <button type="submit">Listar todos</button>
+                </form>
+                <p>-</p>
+                <form onsubmit="find_garante_by_id(event)">
+                    <input type="number" id="garante_id" placeholder="Ingresa el ID" required>
+                    <button type="submit">Listar por ID</button>
+                </form>
+                <p></p>
+                <form onsubmit="find_garante_by_dni(event)">
+                    <input type="number" id="garante_dni" placeholder="Ingresa el DNI" required>
+                    <button type="submit">Listar por DNI</button>
+                </form>
+                <p></p>
+                <form onsubmit="find_garante_by_nombre_apellido(event)">
+                    <input type="text" id="garante_nombre" placeholder="Ingresa el NOMBRE" required>
+                    <input type="text" id="garante_apellido" placeholder="Ingresa el APELLIDO" required>
+                    <button type="submit">Listar por Nombre y Apellido</button>
+                </form>
+                <p></p>
+                <form onsubmit="find_garante_by_prestamo(event)">
+                    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required>
+                    <button type="submit">Listar por Préstamo</button>
+                </form>
+            </div>
+            <p></p>
+
+        </aside>
+
+        <section class="results" aria-live="polite">
+            <h2>Resultados - Garantes</h2>
+            <div class="meta"></div>
+            <div id="garantes_pantalla"></div>
+        </section>
+    </main>
+
+    <script>
+        // pestañas
+        (function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false') });
+                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    const target = document.getElementById(btn.dataset.target);
+                    if (target) target.classList.add('active');
+                });
+            });
+        })();
+    </script>
+
     <script src="js/garante.js"></script>
 </body>
 
