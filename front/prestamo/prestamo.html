@@ -9,59 +9,98 @@
 
 <body>
     <p>Prestamo</p>
-    <button onclick="create_prestamo()">crear prestamo</button>
-    <input type="number" id="monto" placeholder="Ingresa el MONTO">
-    <input type="text" id="moneda" placeholder="Ingresa el MONEDA">
-    <input type="number" id="tasa_interes" placeholder="Ingresa el TASA DE INTERES">
-    <input type="number" id="cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES">
-    <input type="text" id="fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO">
-    <input type="number" id="prestatario_id" placeholder="Ingresa el PRESTATARIO">
-    <input type="number" id="garante_id" placeholder="Ingresa el GARANTE">
+    <form onsubmit="create_prestamo(event)">
+        <button type="submit">crear prestamo</button>
+        <!-- <button onclick="create_prestamo()">crear prestamo</button> -->
+        <input type="number" id="monto" placeholder="Ingresa el MONTO" required>
+        <input type="text" id="moneda" placeholder="Ingresa el MONEDA" required>
+        <input type="number" id="tasa_interes" placeholder="Ingresa el TASA DE INTERES" required>
+        <input type="number" id="cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES" required>
+        <input type="text" id="fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO" required>
+        <input type="number" id="prestatario_id" placeholder="Ingresa el PRESTATARIO" required>
+        <input type="number" id="garante_id" placeholder="Ingresa el GARANTE" required>
+    </form>
     <p></p>
-    <button onclick="update_prestamo()">actualizar prestamo</button>
-    <input type="number" id="prestamo_update_id" placeholder="Ingresa el ID">
-    <input type="number" id="prestamo_update_monto" placeholder="Ingresa el MONTO">
-    <input type="text" id="prestamo_update_moneda" placeholder="Ingresa el MONEDA">
-    <input type="number" id="prestamo_update_tasa_interes" placeholder="Ingresa el TASA DE INTERES">
-    <input type="number" id="prestamo_update_cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES">
-    <input type="number" id="prestamo_update_cuotas_restantes" placeholder="Ingresa la CUOTAS RESTANTES">
-    <input type="number" id="prestamo_update_monto_cuota" placeholder="Ingresa el MONTO DE LAS CUOTAS">
-    <input type="number" id="prestamo_update_monto_restante" placeholder="Ingresa el MONTO RESTANTE">
-    <input type="text" id="prestamo_update_fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO">
-    <input type="number" id="prestamo_update_prestatario_id" placeholder="Ingresa el PRESTATARIO">
-    <input type="number" id="prestamo_update_garante_id" placeholder="Ingresa el GARANTE">
+    <form onsubmit="update_prestamo(event)">
+        <button type="submit">actualizar prestamo</button>
+        <!-- <button onclick="update_prestamo()">actualizar prestamo</button> -->
+        <input type="number" id="prestamo_update_id" placeholder="Ingresa el ID" required>
+        <input type="number" id="prestamo_update_monto" placeholder="Ingresa el MONTO" required>
+        <input type="text" id="prestamo_update_moneda" placeholder="Ingresa el MONEDA" required>
+        <input type="number" id="prestamo_update_tasa_interes" placeholder="Ingresa el TASA DE INTERES" required>
+        <input type="number" id="prestamo_update_cuotas_totales" placeholder="Ingresa la CUOTAS TOTALES" required>
+        <input type="number" id="prestamo_update_cuotas_restantes" placeholder="Ingresa la CUOTAS RESTANTES" required>
+        <input type="number" id="prestamo_update_monto_cuota" placeholder="Ingresa el MONTO DE LAS CUOTAS" required>
+        <input type="number" id="prestamo_update_monto_restante" placeholder="Ingresa el MONTO RESTANTE" required>
+        <input type="text" id="prestamo_update_fecha_prestamo" placeholder="Ingresa el FECHA DEL PRESTAMO" required
+        <input type="number" id="prestamo_update_prestatario_id" placeholder="Ingresa el PRESTATARIO" required>
+        <input type="number" id="prestamo_update_garante_id" placeholder="Ingresa el GARANTE" required>
+    </form>
     <p></p>
-    <button onclick="delete_prestamo()">eliminar por id</button>
-    <input type="number" id="prestamo_id_delete" placeholder="Ingresa el ID">
+    <form onsubmit="delete_prestamo(event)">
+        <button type="submit">eliminar por id</button>
+        <!-- <button onclick="delete_prestamo()">eliminar por id</button> -->
+        <input type="number" id="prestamo_id_delete" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_all_prestamo()">listar todos</button>
+    <form onsubmit="find_all_prestamo(event)">
+        <button type="submit">listar todos</button>
+        <!-- <button onclick="find_all_prestamo()">listar todos</button> -->
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_id()">listar por id</button>
-    <input type="number" id="prestamo_id" placeholder="Ingresa el ID">
+    <form onsubmit="find_prestamo_by_id(event)">
+        <button type="submit">listar por id</button>
+        <!-- <button onclick="find_prestamo_by_id()">listar por id</button> -->
+        <input type="number" id="prestamo_id" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_mayor_que_monto()">listar por monto mayor que</button>
-    <input type="number" id="prestamo_mayor_que_monto" placeholder="Ingresa el MONTO">
+    <form onsubmit="find_prestamo_by_mayor_que_monto(event)">
+        <button type="submit">listar por monto mayor que</button>
+        <!-- <button onclick="find_prestamo_by_mayor_que_monto()">listar por monto mayor que</button> -->
+        <input type="number" id="prestamo_mayor_que_monto" placeholder="Ingresa el MONTO" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_menor_que_monto()">listar por monto menor que</button>
-    <input type="number" id="prestamo_menor_que_monto" placeholder="Ingresa el MONTO">
+    <form onsubmit="find_prestamo_by_menor_que_monto(event)">
+        <button type="submit">listar por monto menor </button>
+        <!-- <button onclick="find_prestamo_by_menor_que_monto()">listar por monto menor que</button> -->
+        <input type="number" id="prestamo_menor_que_monto" placeholder="Ingresa el MONTO" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_fecha_prestamo()">listar por fecha</button>
-    <input type="text" id="prestamo_fecha" placeholder="Ingresa la FECHA">
+    <form onsubmit="find_prestamo_by_fecha_prestamo(event)">
+        <button type="submit">listar por fecha</button>
+        <!-- <button onclick="find_prestamo_by_fecha_prestamo()">listar por fecha</button> -->
+        <input type="text" id="prestamo_fecha" placeholder="Ingresa la FECHA" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_tasa_interes()">listar por tasa de interes</button>
-    <input type="number" id="prestamo_tasa_interes" placeholder="Ingresa la TASA DE INTERES">
+    <form onsubmit="find_prestamo_by_tasa_interes(event)">
+        <button type="submit">listar por tasa de interes</button>
+        <!-- <button onclick="find_prestamo_by_tasa_interes()">listar por tasa de interes</button> -->
+        <input type="number" id="prestamo_tasa_interes" placeholder="Ingresa la TASA DE INTERES" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_cuotas_totales()">listar por cuotas totales</button>
-    <input type="number" id="prestamo_cuotas_totales" placeholder="Ingresa las CUOTAS TOTALES">
+    <form onsubmit="find_prestamo_by_cuotas_totales(event)">
+        <button type="submit">listar por cuotas totales</button>
+        <!-- <button onclick="find_prestamo_by_cuotas_totales()">listar por cuotas totales</button> -->
+        <input type="number" id="prestamo_cuotas_totales" placeholder="Ingresa las CUOTAS TOTALES" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_cuotas_restantes()">listar por cuotas restantes</button>
-    <input type="number" id="prestamo_cuotas_restantes" placeholder="Ingresa las CUOTAS RESTANTES">
+    <form onsubmit="find_prestamo_by_cuotas_restantes(event)">
+        <button type="submit">listar por cuotas restantes</button>
+        <!-- <button onclick="find_prestamo_by_cuotas_restantes()">listar por cuotas restantes</button> -->
+        <input type="number" id="prestamo_cuotas_restantes" placeholder="Ingresa las CUOTAS RESTANTES" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_prestatario()">listar por prestatario</button>
-    <input type="number" id="prestamo_prestatario_id" placeholder="Ingresa el PRESTATARIO">
+    <form onsubmit="find_prestamo_by_prestatario(event)">
+        <button type="submit">listar por prestatario</button>
+        <!-- <button onclick="find_prestamo_by_prestatario()">listar por prestatario</button> -->
+        <input type="number" id="prestamo_prestatario_id" placeholder="Ingresa el PRESTATARIO" required>
+    </form>
     <p></p>
-    <button onclick="find_prestamo_by_garante()">listar por garante</button>
-    <input type="number" id="prestamo_garante_id" placeholder="Ingresa el GARANTE">
+    <form onsubmit="find_prestamo_by_garante(event)">
+        <button type="submit">listar por garante</button>
+        <!-- <button onclick="find_prestamo_by_garante()">listar por garante</button> -->
+        <input type="number" id="prestamo_garante_id" placeholder="Ingresa el GARANTE" required>
+    </form>
     <p></p>
     <div id="prestamos_pantalla"></div>
     <script src="js/prestamo.js"></script>

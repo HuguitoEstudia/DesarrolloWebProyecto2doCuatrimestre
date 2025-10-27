@@ -9,44 +9,68 @@
 
 <body>
     <p>Garantes</p>
-    <button onclick="create_garante()">crear garante</button>
-    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="dni" placeholder="Ingresa el DNI">
-    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="email" placeholder="Ingresa el EMAIL">
-    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
-    <input type="text" id="garante_descripcion" placeholder="Ingresa la DESCRIPCION">
+    <form onsubmit="create_garante(event)">
+        <button type="submit">crear garante</button>
+        <!-- <button onclick="create_garante()">crear garante</button> -->
+        <input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required>
+        <input type="number" id="dni" placeholder="Ingresa el DNI" required>
+        <input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required>
+        <input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required>
+        <input type="text" id="email" placeholder="Ingresa el EMAIL" required>
+        <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
+        <input type="text" id="garante_descripcion" placeholder="Ingresa la DESCRIPCION" required>
+    </form>
     <p></p>
-    <button onclick="update_garante()">actualizar garante</button>
-    <input type="number" id="garante_update_id" placeholder="Ingresa el ID">
-    <input type="text" id="garante_update_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="garante_update_apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="garante_update_dni" placeholder="Ingresa el DNI">
-    <input type="text" id="garante_update_direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="garante_update_telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="garante_update_email" placeholder="Ingresa el EMAIL">
-    <input type="number" id="garante_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
-    <input type="text" id="garante_update_garante_descripcion" placeholder="Ingresa la DESCRIPCION">
+    <form onsubmit="update_garante(event)">
+        <button type="submit">actualizar garante</button>
+        <!-- <button onclick="update_garante()">actualizar garante</button> -->
+        <input type="number" id="garante_update_id" placeholder="Ingresa el ID" required>
+        <input type="text" id="garante_update_nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="garante_update_apellido" placeholder="Ingresa el APELLIDO" required>
+        <input type="number" id="garante_update_dni" placeholder="Ingresa el DNI" required>
+        <input type="text" id="garante_update_direccion" placeholder="Ingresa la DIRECCION" required>
+        <input type="number" id="garante_update_telefono" placeholder="Ingresa el TELEFONO" required>
+        <input type="text" id="garante_update_email" placeholder="Ingresa el EMAIL" required>
+        <input type="number" id="garante_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
+        <input type="text" id="garante_update_garante_descripcion" placeholder="Ingresa la DESCRIPCION" required>
+    </form>
     <p></p>
-    <button onclick="delete_garante()">eliminar por id</button>
-    <input type="number" id="garante_id_delete" placeholder="Ingresa el ID">
+    <form onsubmit="delete_garante(event)">
+        <button type="submit">eliminar por id</button>
+        <!-- <button onclick="delete_garante()">eliminar por id</button> -->
+        <input type="number" id="garante_id_delete" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_all_garante()">listar todos</button>
+    <form onsubmit="find_all_garante(event)">
+        <button type="submit">listar todos</button>
+        <!-- <button onclick="find_all_garante()">listar todos</button> -->
+    </form>
     <p></p>
-    <button onclick="find_garante_by_id()">listar por id</button>
-    <input type="number" id="garante_id" placeholder="Ingresa el ID">
+    <form onsubmit="find_garante_by_id(event)">
+        <button type="submit">listar por id</button>
+        <!-- <button onclick="find_garante_by_id()">listar por id</button> -->
+        <input type="number" id="garante_id" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_garante_by_dni()">listar por dni</button>
-    <input type="number" id="garante_dni" placeholder="Ingresa el DNI">
+    <form onsubmit="find_garante_by_dni(event)">
+        <button type="submit">listar por dni</button>
+        <!-- <button onclick="find_garante_by_dni()">listar por dni</button> -->
+        <input type="number" id="garante_dni" placeholder="Ingresa el DNI" required>
+    </form>
     <p></p>
-    <button onclick="find_garante_by_nombre_apellido()">listar por nombre y apellido</button>
-    <input type="text" id="garante_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="garante_apellido" placeholder="Ingresa el APELLIDO">
+    <form onsubmit="find_garante_by_nombre_apellido(event)">
+        <button type="submit">listar por nombre y apellido</button>
+        <!-- <button onclick="find_garante_by_nombre_apellido()">listar por nombre y apellido</button> -->
+        <input type="text" id="garante_nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="garante_apellido" placeholder="Ingresa el APELLIDO" required>
+    </form>
     <p></p>
-    <button onclick="find_garante_by_prestamo()">listar por prestamo</button>
-    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO">
+    <form onsubmit="find_garante_by_prestamo(event)">
+        <button type="submit">listar por prestamo</button>
+        <!-- <button onclick="find_garante_by_prestamo()">listar por prestamo</button> -->
+        <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required>
+    </form>
     <p></p>
     <div id="garantes_pantalla"></div>
     <script src="js/garante.js"></script>

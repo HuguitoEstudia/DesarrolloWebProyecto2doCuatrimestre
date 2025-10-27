@@ -27,7 +27,7 @@ def create_prestatario(
     
     session.add(nuevo_prestatario)
     session.commit()
-    return {True}
+    return {"Prestatario creado correctamente"}
 
 
 @app.put("/update_prestatario/",tags=["Prestatario"],)

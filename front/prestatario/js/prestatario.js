@@ -1,6 +1,7 @@
 const BASE_URL = "http://127.0.0.1:8000";
 
-async function create_prestatario() {
+async function create_prestatario(event) {
+    event.preventDefault();
 	const nuevoPrestatario = {
 		nombre: document.getElementById("nombre").value,
 		apellido: document.getElementById("apellido").value,
@@ -27,7 +28,8 @@ async function create_prestatario() {
 	contenedor.innerHTML = `<p>${JSON.stringify(resultado)}</p>`;
 }
 
-async function update_prestatario() {
+async function update_prestatario(event) {
+    event.preventDefault();
 	const item_id = document.getElementById("prestatario_update_id").value;
 
 	const updatePrestatario = {
@@ -57,7 +59,8 @@ async function update_prestatario() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestatario() {
+async function delete_prestatario(event) {
+    event.preventDefault();
 	const item_id = document.getElementById("prestatario_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${item_id}`, {
@@ -71,7 +74,8 @@ async function delete_prestatario() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_all_prestatario() {
+async function find_all_prestatario(event) {
+    event.preventDefault();
 	const response = await fetch(`${BASE_URL}/find_all_prestatario/`);
 
 	const items = await response.json();
@@ -81,7 +85,8 @@ async function find_all_prestatario() {
 	contenedor.innerHTML = items.map((prestatario) => `<p>${JSON.stringify(prestatario)}</p>`).join("");
 }
 
-async function find_prestatario_by_id() {
+async function find_prestatario_by_id(event) {
+    event.preventDefault();
 	const item_id = document.getElementById("prestatario_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestatario_by_id/?item_id=${item_id}`);
@@ -93,7 +98,8 @@ async function find_prestatario_by_id() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestatario_by_dni() {
+async function find_prestatario_by_dni(event) {
+    event.preventDefault();
 	const item_dni = document.getElementById("prestatario_dni").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestatario_by_dni/?item_dni=${item_dni}`);
@@ -105,7 +111,8 @@ async function find_prestatario_by_dni() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestatario_by_nombre_apellido() {
+async function find_prestatario_by_nombre_apellido(event) {
+    event.preventDefault();
 	const item_nombre = document.getElementById("prestatario_nombre").value;
 
 	const item_apellido = document.getElementById("prestatario_apellido").value;
@@ -121,7 +128,8 @@ async function find_prestatario_by_nombre_apellido() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestatario_by_prestamo() {
+async function find_prestatario_by_prestamo(event) {
+    event.preventDefault();
 	const prestamo_id = document.getElementById("prestamo_id").value;
 	
 	const response = await fetch(`${BASE_URL}/find_prestatario_by_prestamo/?prestamo_id=${prestamo_id}`);

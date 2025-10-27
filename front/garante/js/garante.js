@@ -1,6 +1,7 @@
 const BASE_URL = "http://127.0.0.1:8000";
 
-async function create_garante() {
+async function create_garante(event) {
+	event.preventDefault();
 	const nuevoGarante = {
 		nombre: document.getElementById("nombre").value,
 		apellido: document.getElementById("apellido").value,
@@ -26,7 +27,8 @@ async function create_garante() {
 	contenedor.innerHTML = `<p>${JSON.stringify(resultado)}</p>`;
 }
 
-async function update_garante() {
+async function update_garante(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("garante_update_id").value;
 
 	const updateGarante = {
@@ -55,7 +57,8 @@ async function update_garante() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_garante() {
+async function delete_garante(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("garante_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_garante/?item_id=${item_id}`, {
@@ -69,7 +72,8 @@ async function delete_garante() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_all_garante() {
+async function find_all_garante(event) {
+	event.preventDefault();
 	const response = await fetch(`${BASE_URL}/find_all_garante/`);
 
 	const items = await response.json();
@@ -79,7 +83,8 @@ async function find_all_garante() {
 	contenedor.innerHTML = items.map((garante) => `<p>${JSON.stringify(garante)}</p>`).join("");
 }
 
-async function find_garante_by_id() {
+async function find_garante_by_id(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("garante_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_garante_by_id/?item_id=${item_id}`);
@@ -91,7 +96,8 @@ async function find_garante_by_id() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_garante_by_dni() {
+async function find_garante_by_dni(event) {
+	event.preventDefault();
 	const item_dni = document.getElementById("garante_dni").value;
 
 	const response = await fetch(`${BASE_URL}/find_garante_by_dni/?item_dni=${item_dni}`);
@@ -103,7 +109,8 @@ async function find_garante_by_dni() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_garante_by_nombre_apellido() {
+async function find_garante_by_nombre_apellido(event) {
+	event.preventDefault();
 	const item_nombre = document.getElementById("garante_nombre").value;
 
 	const item_apellido = document.getElementById("garante_apellido").value;
@@ -119,7 +126,8 @@ async function find_garante_by_nombre_apellido() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_garante_by_prestamo() {
+async function find_garante_by_prestamo(event) {
+	event.preventDefault();
 	const prestamo_id = document.getElementById("prestamo_id").value;
 	
 	const response = await fetch(`${BASE_URL}/find_garante_by_prestamo/?prestamo_id=${prestamo_id}`);

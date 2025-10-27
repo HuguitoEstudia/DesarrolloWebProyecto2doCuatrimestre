@@ -9,48 +9,72 @@
 
 <body>
     <p>Prestatarios</p>
-    <button onclick="create_prestatario()">crear prestatario</button>
-    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="dni" placeholder="Ingresa el DNI">
-    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="email" placeholder="Ingresa el EMAIL">
-    <input type="checkbox" id="estado_empleo">
-    <label for="estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
-    <input type="text" id="ocupacion" placeholder="Ingresa la OCUPACION">
-    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <form onsubmit="create_prestatario(event)">
+        <!-- <button onclick="create_prestatario()">crear prestatario</button> -->
+        <button type="submit">crear prestatario</button>
+        <input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required>
+        <input type="number" id="dni" placeholder="Ingresa el DNI" required>
+        <input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required>
+        <input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required>
+        <input type="text" id="email" placeholder="Ingresa el EMAIL" required>
+        <input type="checkbox" id="estado_empleo">
+        <label for="estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
+        <input type="text" id="ocupacion" placeholder="Ingresa la OCUPACION" required>
+        <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
+    </form>
     <p></p>
-    <button onclick="update_prestatario()">actualizar prestatario</button>
-    <input type="number" id="prestatario_update_id" placeholder="Ingresa el ID">
-    <input type="text" id="prestatario_update_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="prestatario_update_apellido" placeholder="Ingresa el APELLIDO">
-    <input type="number" id="prestatario_update_dni" placeholder="Ingresa el DNI">
-    <input type="text" id="prestatario_update_direccion" placeholder="Ingresa la DIRECCION">
-    <input type="number" id="prestatario_update_telefono" placeholder="Ingresa el TELEFONO">
-    <input type="text" id="prestatario_update_email" placeholder="Ingresa el EMAIL">
-    <input type="checkbox" id="prestatario_update_estado_empleo">
-    <label for="update_estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
-    <input type="text" id="prestatario_update_ocupacion" placeholder="Ingresa la OCUPACION">
-    <input type="number" id="prestatario_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL">
+    <form onsubmit="update_prestatario(event)">
+        <!-- <button onclick="update_prestatario()">actualizar prestatario</button> -->
+        <button type="submit">actualizar prestatario</button>
+        <input type="number" id="prestatario_update_id" placeholder="Ingresa el ID" required>
+        <input type="text" id="prestatario_update_nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="prestatario_update_apellido" placeholder="Ingresa el APELLIDO" required>
+        <input type="number" id="prestatario_update_dni" placeholder="Ingresa el DNI" required>
+        <input type="text" id="prestatario_update_direccion" placeholder="Ingresa la DIRECCION" required>
+        <input type="number" id="prestatario_update_telefono" placeholder="Ingresa el TELEFONO" required>
+        <input type="text" id="prestatario_update_email" placeholder="Ingresa el EMAIL" required>
+        <input type="checkbox" id="prestatario_update_estado_empleo">
+        <label for="update_estado_empleo">ESTA EMPLEADO ACTUALMENTE</label>
+        <input type="text" id="prestatario_update_ocupacion" placeholder="Ingresa la OCUPACION">
+        <input type="number" id="prestatario_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
+    </form>
     <p></p>
-    <button onclick="delete_prestatario()">eliminar por id</button>
-    <input type="number" id="prestatario_id_delete" placeholder="Ingresa el ID">
+    <form onsubmit="delete_prestatario(event)">
+        <button type="submit">eliminar por id</button>
+        <!-- <button onclick="delete_prestatario()">eliminar por id</button> -->
+        <input type="number" id="prestatario_id_delete" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_all_prestatario()">listar todos</button>
+    <form onsubmit="find_all_prestatario(event)">
+        <button type="submit">listar todos</button>
+        <!-- <button onclick="find_all_prestatario()">listar todos</button> -->
+    </form>
     <p></p>
-    <button onclick="find_prestatario_by_id()">listar por id</button>
-    <input type="number" id="prestatario_id" placeholder="Ingresa el ID">
+    <form onsubmit="find_prestatario_by_id(event)">
+        <button type="submit">listar por id</button>
+        <!-- <button onclick="find_prestatario_by_id()">listar por id</button> -->
+        <input type="number" id="prestatario_id" placeholder="Ingresa el ID" required>
+    </form>
     <p></p>
-    <button onclick="find_prestatario_by_dni()">listar por dni</button>
-    <input type="number" id="prestatario_dni" placeholder="Ingresa el DNI">
+    <form onsubmit="find_prestatario_by_dni(event)">
+        <button type="submit">listar por dni</button>
+        <!-- <button onclick="find_prestatario_by_dni()">listar por dni</button> -->
+        <input type="number" id="prestatario_dni" placeholder="Ingresa el DNI" required>
+    </form>
     <p></p>
-    <button onclick="find_prestatario_by_nombre_apellido()">listar por nombre y apellido</button>
-    <input type="text" id="prestatario_nombre" placeholder="Ingresa el NOMBRE">
-    <input type="text" id="prestatario_apellido" placeholder="Ingresa el APELLIDO">
+    <form onsubmit="find_prestatario_by_nombre_apellido(event)">
+        <button type="submit">listar por nombre y apellido</button>
+        <!-- <button onclick="find_prestatario_by_nombre_apellido()">listar por nombre y apellido</button> -->
+        <input type="text" id="prestatario_nombre" placeholder="Ingresa el NOMBRE" required>
+        <input type="text" id="prestatario_apellido" placeholder="Ingresa el APELLIDO" required>
+    </form>
     <p></p>
-    <button onclick="find_prestatario_by_prestamo()">listar por prestamo</button>
-    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO">
+    <form onsubmit="find_prestatario_by_prestamo(event)">
+        <button type="submit">listar por prestamo</button>
+        <!-- <button onclick="find_prestatario_by_prestamo()">listar por prestamo</button> -->
+        <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required>
+    </form>
     <p></p>
     <div id="prestatarios_pantalla"></div>
     <script src="js/prestatario.js"></script>

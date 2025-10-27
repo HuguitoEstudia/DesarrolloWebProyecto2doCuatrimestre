@@ -1,6 +1,7 @@
 const BASE_URL = "http://127.0.0.1:8000";
 
-async function create_prestamo() {
+async function create_prestamo(event) {
+	event.preventDefault();
 	const nuevoPrestamo = {
 		monto: document.getElementById("monto").value,
 		moneda: document.getElementById("moneda").value,
@@ -25,7 +26,8 @@ async function create_prestamo() {
 	contenedor.innerHTML = `<p>${JSON.stringify(resultado)}</p>`;
 }
 
-async function update_prestamo() {
+async function update_prestamo(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("prestamo_update_id").value;
 
 	const updatePrestamo = {
@@ -56,7 +58,8 @@ async function update_prestamo() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestamo() {
+async function delete_prestamo(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("prestamo_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_prestamo/?item_id=${item_id}`, {
@@ -70,7 +73,8 @@ async function delete_prestamo() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_all_prestamo() {
+async function find_all_prestamo(event) {
+	event.preventDefault();
 	const response = await fetch(`${BASE_URL}/find_all_prestamo/`);
 
 	const items = await response.json();
@@ -80,7 +84,8 @@ async function find_all_prestamo() {
 	contenedor.innerHTML = items.map((prestamo) => `<p>${JSON.stringify(prestamo)}</p>`).join("");
 }
 
-async function find_prestamo_by_id() {
+async function find_prestamo_by_id(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("prestamo_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_id/?item_id=${item_id}`);
@@ -92,7 +97,8 @@ async function find_prestamo_by_id() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_mayor_que_monto() {
+async function find_prestamo_by_mayor_que_monto(event) {
+	event.preventDefault();
 	const item_monto = document.getElementById("prestamo_mayor_que_monto").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_mayor_que_monto/?item_monto=${item_monto}`);
@@ -104,7 +110,8 @@ async function find_prestamo_by_mayor_que_monto() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_menor_que_monto() {
+async function find_prestamo_by_menor_que_monto(event) {
+	event.preventDefault();
 	const item_monto = document.getElementById("prestamo_menor_que_monto").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_menor_que_monto/?item_monto=${item_monto}`);
@@ -116,7 +123,8 @@ async function find_prestamo_by_menor_que_monto() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_fecha_prestamo() {
+async function find_prestamo_by_fecha_prestamo(event) {
+	event.preventDefault();
 	const item_fecha_prestamo = document.getElementById("prestamo_fecha").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_fecha_prestamo/?item_fecha_prestamo=${item_fecha_prestamo}`);
@@ -128,7 +136,8 @@ async function find_prestamo_by_fecha_prestamo() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_tasa_interes() {
+async function find_prestamo_by_tasa_interes(event) {
+	event.preventDefault();
 	const item_tasa_interes = document.getElementById("prestamo_tasa_interes").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_tasa_interes/?item_tasa_interes=${item_tasa_interes}`);
@@ -140,7 +149,8 @@ async function find_prestamo_by_tasa_interes() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_cuotas_totales() {
+async function find_prestamo_by_cuotas_totales(event) {
+	event.preventDefault();
 	const item_cuotas_totales = document.getElementById("prestamo_cuotas_totales").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_totales/?item_cuotas_totales=${item_cuotas_totales}`);
@@ -152,7 +162,8 @@ async function find_prestamo_by_cuotas_totales() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_cuotas_restantes() {
+async function find_prestamo_by_cuotas_restantes(event) {
+	event.preventDefault();
 	const item_cuotas_restantes = document.getElementById("prestamo_cuotas_restantes").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_restantes/?item_cuotas_restantes=${item_cuotas_restantes}`);
@@ -164,7 +175,8 @@ async function find_prestamo_by_cuotas_restantes() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_prestatario() {
+async function find_prestamo_by_prestatario(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("prestamo_prestatario_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_prestatario/?item_id=${item_id}`);
@@ -176,7 +188,8 @@ async function find_prestamo_by_prestatario() {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function find_prestamo_by_garante() {
+async function find_prestamo_by_garante(event) {
+	event.preventDefault();
 	const item_id = document.getElementById("prestamo_garante_id").value;
 
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_garante/?item_id=${item_id}`);
