@@ -80,7 +80,24 @@ async function find_all_garante(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = items.map((garante) => `<p>${JSON.stringify(garante)}</p>`).join("");
+	// contenedor.innerHTML = items.map((garante) => `<p>${JSON.stringify(garante)}</p>`).join("");
+
+	contenedor.innerHTML = items
+		.map(
+			(prestatario) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
+				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
+				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
+				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
+				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
+				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
+				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
+				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
+				`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_garante_by_id(event) {
@@ -93,7 +110,20 @@ async function find_garante_by_id(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML =
+		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
+		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
+		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`</div>`;
 }
 
 async function find_garante_by_dni(event) {
@@ -106,7 +136,20 @@ async function find_garante_by_dni(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML =
+		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
+		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
+		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`</div>`;
 }
 
 async function find_garante_by_nombre_apellido(event) {
@@ -123,7 +166,24 @@ async function find_garante_by_nombre_apellido(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestatario) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
+				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
+				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
+				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
+				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
+				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
+				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
+				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
+				`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_garante_by_prestamo(event) {
@@ -136,5 +196,18 @@ async function find_garante_by_prestamo(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML =
+		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
+		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
+		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`</div>`;
 }

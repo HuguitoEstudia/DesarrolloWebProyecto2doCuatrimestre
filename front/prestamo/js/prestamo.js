@@ -81,7 +81,26 @@ async function find_all_prestamo(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = items.map((prestamo) => `<p>${JSON.stringify(prestamo)}</p>`).join("");
+	// contenedor.innerHTML = items.map((prestamo) => `<p>${JSON.stringify(prestamo)}</p>`).join("");
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_id(event) {
@@ -94,7 +113,22 @@ async function find_prestamo_by_id(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML =
+		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<p><strong>ID:</strong> ${items.id}</p>` +
+		`<p><strong>Monto:</strong> ${items.monto}</p>` +
+		`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
+		`<p><strong>Tasa de Interes:</strong> ${items.tasa_interes}</p>` +
+		`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
+		`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
+		`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
+		`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>` +
+		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
+		`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
+		`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
+		`</div>`;
 }
 
 async function find_prestamo_by_mayor_que_monto(event) {
@@ -107,7 +141,26 @@ async function find_prestamo_by_mayor_que_monto(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_menor_que_monto(event) {
@@ -120,7 +173,26 @@ async function find_prestamo_by_menor_que_monto(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_fecha_prestamo(event) {
@@ -133,7 +205,26 @@ async function find_prestamo_by_fecha_prestamo(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_tasa_interes(event) {
@@ -146,7 +237,26 @@ async function find_prestamo_by_tasa_interes(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_cuotas_totales(event) {
@@ -159,7 +269,26 @@ async function find_prestamo_by_cuotas_totales(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_cuotas_restantes(event) {
@@ -172,7 +301,26 @@ async function find_prestamo_by_cuotas_restantes(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_prestatario(event) {
@@ -185,7 +333,26 @@ async function find_prestamo_by_prestatario(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
 
 async function find_prestamo_by_garante(event) {
@@ -198,5 +365,24 @@ async function find_prestamo_by_garante(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+
+	contenedor.innerHTML = items
+		.map(
+			(prestamo) =>
+				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
+				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`</div>`
+		)
+		.join("");
 }
