@@ -177,8 +177,8 @@ function devolverinnerHTML(items) {
 		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
 		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-		`<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
+		`<button onclick="completarFormularioUpdate(${items.id})"><strong>Actualizar</strong></button>` +
+		`<button onclick="delete_prestatario(event,${items.id})"><strong>Eliminar</strong></button>` +
 		`</div>`
 	);
 }
@@ -208,3 +208,21 @@ async function completarFormularioUpdate(item_id) {
 	const panel = document.getElementById("actualizar");
 	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }
+
+
+(function () {
+	const tabs = document.querySelectorAll(".tab-btn");
+	tabs.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			document.querySelectorAll(".tab-btn").forEach((b) => {
+				b.classList.remove("active");
+				b.setAttribute("aria-selected", "false");
+			});
+			document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
+			btn.classList.add("active");
+			btn.setAttribute("aria-selected", "true");
+			const target = document.getElementById(btn.dataset.target);
+			if (target) target.classList.add("active");
+		});
+	});
+})();

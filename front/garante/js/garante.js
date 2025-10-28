@@ -167,8 +167,8 @@ function devolverinnerHTML(items) {
 		`<p><strong>Email:</strong> ${items.email}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
 		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-		`<button onclick="delete_garante(event,${items.id})">Eliminar</button>` +
+		`<button onclick="completarFormularioUpdate(${items.id})"><strong>Actualizar</strong></button>` +
+		`<button onclick="delete_garante(event,${items.id})"><strong>Eliminar</strong></button>` +
 		`</div>`
 	);
 }
@@ -197,3 +197,21 @@ async function completarFormularioUpdate(item_id) {
 	const panel = document.getElementById("actualizar");
 	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }
+
+
+(function () {
+	const tabs = document.querySelectorAll(".tab-btn");
+	tabs.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			document.querySelectorAll(".tab-btn").forEach((b) => {
+				b.classList.remove("active");
+				b.setAttribute("aria-selected", "false");
+			});
+			document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
+			btn.classList.add("active");
+			btn.setAttribute("aria-selected", "true");
+			const target = document.getElementById(btn.dataset.target);
+			if (target) target.classList.add("active");
+		});
+	});
+})();

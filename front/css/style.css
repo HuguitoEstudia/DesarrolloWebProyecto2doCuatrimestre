@@ -197,5 +197,15 @@ body{
   border: 2px solid #0f62fe;
   border-radius: 5px;
   margin-right: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.items_recuperados p{
+  margin: 5px;
+}
+
+.items_recuperados p:first-child {
+  margin-top: 10px;
 }
