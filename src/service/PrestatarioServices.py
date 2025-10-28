@@ -39,7 +39,7 @@ def update_prestatario(
     prestatario = session.query(Prestatario).filter(Prestatario.id == item_id).first()
 
     if prestatario == None:
-        return {False}
+        return False
     else:
         prestatario.nombre = prestatarioUpdate.nombre # type: ignore
         prestatario.apellido = prestatarioUpdate.apellido # type: ignore
@@ -60,7 +60,7 @@ def update_prestatario(
 def delete_prestatario(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.id == item_id).first()
     if response == None:
-        return {"Prestatario no encontrado"}
+        return False
     else:
         comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
         if comprobar_prestamos == []:
@@ -68,7 +68,7 @@ def delete_prestatario(item_id:int,session: Session = Depends(get_session)):
             session.commit()
             return {"Prestatario eliminado correctamente"}
         else:
-            return {"Existen prestamos asociados al Prestatario"}
+            return False
 
 
 @app.get("/find_all_prestatario/",tags=["Prestatario"])
@@ -76,7 +76,7 @@ def find_all_prestatario(session: Session = Depends(get_session)):
     # diccionario
     response = session.query(Prestatario).all()
     if response == []:
-        return {None}
+        return False
     else:
         return response
 
@@ -85,7 +85,7 @@ def find_all_prestatario(session: Session = Depends(get_session)):
 def find_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.id == item_id).first()
     if response == None:
-        return {"Prestatario no encontrado"}
+        return False
     else:
         # diccionario
         return response
@@ -95,7 +95,7 @@ def find_prestatario_by_id(item_id:int,session: Session = Depends(get_session)):
 def find_prestatario_by_dni(item_dni:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.dni == item_dni).first()
     if response == None:
-        return {"Prestatario no encontrado"}
+        return False
     else:
         # diccionario
         return response
@@ -108,7 +108,7 @@ def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,sessio
                                                 Prestatario.apellido == item_apellido
                                                 ).all()
     if response == []:
-        return {"Prestatario no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -117,7 +117,7 @@ def find_prestatario_by_nombre_apellido(item_nombre:str,item_apellido:str,sessio
 def find_prestatario_by_prestamo(prestamo_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == prestamo_id).first()
     if response == None:
-        return {"Prestatario no encontrado"}
+        return False
     else:
         # diccionario
         return response.prestatario

@@ -42,7 +42,7 @@ def update_prestamo(
     prestamo = session.query(Prestamo).filter(Prestamo.id == item_id).first()
 
     if prestamo == None:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         prestamo.monto=prestamoUpdate.monto # type: ignore
         prestamo.moneda=prestamoUpdate.moneda # type: ignore
@@ -64,7 +64,7 @@ def update_prestamo(
 def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == item_id).first()
     if response == None:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         if response.monto_restante > 0: # type: ignore
             return {"Queda deuda pendiente"}
@@ -78,7 +78,7 @@ def find_all_prestamo(session: Session = Depends(get_session)):
     # lista de diccionario
     response = session.query(Prestamo).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         return response
 
@@ -87,7 +87,7 @@ def find_all_prestamo(session: Session = Depends(get_session)):
 def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == item_id).first()
     if response == None:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # diccionario
         return response
@@ -97,7 +97,7 @@ def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
 def find_prestamo_by_mayor_que_monto(item_monto:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.monto >= item_monto).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -107,7 +107,7 @@ def find_prestamo_by_mayor_que_monto(item_monto:float,session: Session = Depends
 def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.monto <= item_monto).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -117,7 +117,7 @@ def find_prestamo_by_menor_que_monto(item_monto:float,session: Session = Depends
 def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.fecha_prestamo == item_fecha_prestamo).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -127,7 +127,7 @@ def find_prestamo_by_fecha_prestamo(item_fecha_prestamo:str,session: Session = D
 def find_prestamo_by_tasa_interes(item_tasa_interes:float,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.tasa_interes == item_tasa_interes).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -137,7 +137,7 @@ def find_prestamo_by_tasa_interes(item_tasa_interes:float,session: Session = Dep
 def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.cuotas_totales == item_cuotas_totales).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -147,7 +147,7 @@ def find_prestamo_by_cuotas_totales(item_cuotas_totales:int,session: Session = D
 def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.cuotas_restantes == item_cuotas_restantes).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -156,7 +156,7 @@ def find_prestamo_by_cuotas_restantes(item_cuotas_restantes:int,session: Session
 def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response
@@ -165,7 +165,7 @@ def find_prestamo_by_prestatario(item_id:int,session: Session = Depends(get_sess
 def find_prestamo_by_garante(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.garante_id == item_id).all()
     if response == []:
-        return {"Prestamo no encontrado"}
+        return False
     else:
         # lista de diccionarios
         return response

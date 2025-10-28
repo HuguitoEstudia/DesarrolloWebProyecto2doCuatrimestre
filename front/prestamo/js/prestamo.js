@@ -9,7 +9,7 @@ async function create_prestamo(event) {
 		cuotas_totales: document.getElementById("cuotas_totales").value,
 		fecha_prestamo: document.getElementById("fecha_prestamo").value,
 		prestatario_id: document.getElementById("prestatario_id").value,
-        garante_id: document.getElementById("garante_id").value
+		garante_id: document.getElementById("garante_id").value,
 	};
 
 	const response = await fetch(`${BASE_URL}/create_prestamo/`, {
@@ -35,12 +35,12 @@ async function update_prestamo(event) {
 		moneda: document.getElementById("prestamo_update_moneda").value,
 		tasa_interes: document.getElementById("prestamo_update_tasa_interes").value,
 		cuotas_totales: document.getElementById("prestamo_update_cuotas_totales").value,
-        cuotas_restantes: document.getElementById("prestamo_update_cuotas_restantes").value,
-        monto_cuota: document.getElementById("prestamo_update_monto_cuota").value,
-        monto_restante: document.getElementById("prestamo_update_monto_restante").value,
+		cuotas_restantes: document.getElementById("prestamo_update_cuotas_restantes").value,
+		monto_cuota: document.getElementById("prestamo_update_monto_cuota").value,
+		monto_restante: document.getElementById("prestamo_update_monto_restante").value,
 		fecha_prestamo: document.getElementById("prestamo_update_fecha_prestamo").value,
 		prestatario_id: document.getElementById("prestamo_update_prestatario_id").value,
-        garante_id: document.getElementById("prestamo_update_garante_id").value
+		garante_id: document.getElementById("prestamo_update_garante_id").value,
 	};
 
 	const response = await fetch(`${BASE_URL}/update_prestamo/?item_id=${item_id}`, {
@@ -58,11 +58,11 @@ async function update_prestamo(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestamo(event,item_id) {
+async function delete_prestamo(event, item_id) {
 	event.preventDefault();
 
 	const response = await fetch(`${BASE_URL}/delete_prestamo/?item_id=${item_id}`, {
-		method: "DELETE"
+		method: "DELETE",
 	});
 
 	const items = await response.json();
@@ -80,8 +80,11 @@ async function find_all_prestamo(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
-
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_id(event) {
@@ -93,8 +96,11 @@ async function find_prestamo_by_id(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = devolverinnerHTML(items);
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = devolverinnerHTML(items);
+	}
 }
 
 async function find_prestamo_by_mayor_que_monto(event) {
@@ -106,8 +112,11 @@ async function find_prestamo_by_mayor_que_monto(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_menor_que_monto(event) {
@@ -119,21 +128,29 @@ async function find_prestamo_by_menor_que_monto(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_fecha_prestamo(event) {
 	event.preventDefault();
 	const item_fecha_prestamo = document.getElementById("prestamo_fecha").value;
 
-	const response = await fetch(`${BASE_URL}/find_prestamo_by_fecha_prestamo/?item_fecha_prestamo=${item_fecha_prestamo}`);
+	const response = await fetch(
+		`${BASE_URL}/find_prestamo_by_fecha_prestamo/?item_fecha_prestamo=${item_fecha_prestamo}`
+	);
 
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_tasa_interes(event) {
@@ -145,34 +162,47 @@ async function find_prestamo_by_tasa_interes(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_cuotas_totales(event) {
 	event.preventDefault();
 	const item_cuotas_totales = document.getElementById("prestamo_cuotas_totales").value;
 
-	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_totales/?item_cuotas_totales=${item_cuotas_totales}`);
+	const response = await fetch(
+		`${BASE_URL}/find_prestamo_by_cuotas_totales/?item_cuotas_totales=${item_cuotas_totales}`
+	);
 
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_cuotas_restantes(event) {
 	event.preventDefault();
 	const item_cuotas_restantes = document.getElementById("prestamo_cuotas_restantes").value;
 
-	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_restantes/?item_cuotas_restantes=${item_cuotas_restantes}`);
+	const response = await fetch(
+		`${BASE_URL}/find_prestamo_by_cuotas_restantes/?item_cuotas_restantes=${item_cuotas_restantes}`
+	);
 
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_prestatario(event) {
@@ -184,8 +214,11 @@ async function find_prestamo_by_prestatario(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
 async function find_prestamo_by_garante(event) {
@@ -197,27 +230,30 @@ async function find_prestamo_by_garante(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+	}
 }
 
-function devolverinnerHTML(items){
+function devolverinnerHTML(items) {
 	return (
 		`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${items.id}</p>` +
-				`<p><strong>Monto:</strong> ${items.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${items.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestamo(event,${items.id})">Eliminar</button>` +
-				`</div>`
+		`<p><strong>ID:</strong> ${items.id}</p>` +
+		`<p><strong>Monto:</strong> ${items.monto}</p>` +
+		`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
+		`<p><strong>Tasa de Interes:</strong> ${items.tasa_interes}</p>` +
+		`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
+		`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
+		`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
+		`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>` +
+		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
+		`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
+		`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+		`<button onclick="delete_prestamo(event,${items.id})">Eliminar</button>` +
+		`</div>`
 	);
 }
 

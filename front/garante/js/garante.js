@@ -57,11 +57,11 @@ async function update_garante(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_garante(event,item_id) {
+async function delete_garante(event, item_id) {
 	event.preventDefault();
 
 	const response = await fetch(`${BASE_URL}/delete_garante/?item_id=${item_id}`, {
-		method: "DELETE"
+		method: "DELETE",
 	});
 
 	const items = await response.json();
@@ -79,7 +79,11 @@ async function find_all_garante(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Garantes</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
+	}
 }
 
 async function find_garante_by_id(event) {
@@ -92,7 +96,11 @@ async function find_garante_by_id(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = devolverinnerHTML(items);
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Garantes</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = devolverinnerHTML(items);
+	}
 }
 
 async function find_garante_by_dni(event) {
@@ -104,8 +112,11 @@ async function find_garante_by_dni(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("garantes_pantalla");
-
-	contenedor.innerHTML = devolverinnerHTML(items);
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Garantes</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = devolverinnerHTML(items);
+	}
 }
 
 async function find_garante_by_nombre_apellido(event) {
@@ -121,24 +132,30 @@ async function find_garante_by_nombre_apellido(event) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("garantes_pantalla");
-
-	contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Garantes</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
+	}
 }
 
 async function find_garante_by_prestamo(event) {
 	event.preventDefault();
 	const prestamo_id = document.getElementById("prestamo_id").value;
-	
+
 	const response = await fetch(`${BASE_URL}/find_garante_by_prestamo/?prestamo_id=${prestamo_id}`);
 
 	const items = await response.json();
 
 	const contenedor = document.getElementById("garantes_pantalla");
-
-	contenedor.innerHTML = devolverinnerHTML(items);
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Garantes</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = devolverinnerHTML(items);
+	}
 }
 
-function devolverinnerHTML(items){
+function devolverinnerHTML(items) {
 	return (
 		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${items.id}</p>` +
@@ -151,7 +168,7 @@ function devolverinnerHTML(items){
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
 		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
 		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_garante(event,${items.id})">Eliminar</button>` +
+		`<button onclick="delete_garante(event,${items.id})">Eliminar</button>` +
 		`</div>`
 	);
 }
