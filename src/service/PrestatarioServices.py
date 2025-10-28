@@ -59,16 +59,14 @@ def update_prestatario(
 @app.delete("/delete_prestatario/",tags=["Prestatario"])
 def delete_prestatario(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestatario).filter(Prestatario.id == item_id).first()
-    if response == None:
-        return False
+
+    comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
+    if comprobar_prestamos == []:
+        session.delete(response)
+        session.commit()
+        return {"Prestatario eliminado correctamente"}
     else:
-        comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
-        if comprobar_prestamos == []:
-            session.delete(response)
-            session.commit()
-            return {"Prestatario eliminado correctamente"}
-        else:
-            return False
+        return False
 
 
 @app.get("/find_all_prestatario/",tags=["Prestatario"])

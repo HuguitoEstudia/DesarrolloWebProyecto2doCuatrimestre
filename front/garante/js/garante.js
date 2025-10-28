@@ -68,7 +68,11 @@ async function delete_garante(event, item_id) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se pudo eliminar, existen prestamos asociados al Garante</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	}
 }
 
 async function find_all_garante(event) {

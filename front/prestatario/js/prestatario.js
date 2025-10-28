@@ -22,10 +22,10 @@ async function create_prestatario(event) {
 		body: JSON.stringify(nuevoPrestatario),
 	});
 
-	const resultado = await response.json();
+	// const resultado = await response.json();
 
-	const contenedor = document.getElementById("prestatarios_pantalla");
-	contenedor.innerHTML = `<p>${JSON.stringify(resultado)}</p>`;
+	// const contenedor = document.getElementById("prestatarios_pantalla");
+	// contenedor.innerHTML = `<p>${JSON.stringify(resultado)}</p>`;
 }
 
 async function update_prestatario(event) {
@@ -52,11 +52,11 @@ async function update_prestatario(event) {
 		body: JSON.stringify(updatePrestatario),
 	});
 
-	const items = await response.json();
+	// const items = await response.json();
 
-	const contenedor = document.getElementById("prestatarios_pantalla");
+	// const contenedor = document.getElementById("prestatarios_pantalla");
 
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
 async function delete_prestatario(event, item_id) {
@@ -71,7 +71,7 @@ async function delete_prestatario(event, item_id) {
 	const contenedor = document.getElementById("prestatarios_pantalla");
 	
 	if (items == false) {
-		contenedor.innerHTML = `<p>Existen prestamos asociados al Prestatario</p>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se pudo eliminar, existen prestamos asociados al Prestatario</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 	}

@@ -57,16 +57,14 @@ def update_garante(
 @app.delete("/delete_garante/",tags=["Garante"])
 def delete_garante(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Garante).filter(Garante.id == item_id).first()
-    if response == None:
-        return False
+
+    comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
+    if comprobar_prestamos == []:
+        session.delete(response)
+        session.commit()
+        return {"Garante eliminado correctamente"}
     else:
-        comprobar_prestamos = session.query(Prestamo).filter(Prestamo.prestatario_id == item_id).all()
-        if comprobar_prestamos == []:
-            session.delete(response)
-            session.commit()
-            return {"Garante eliminado correctamente"}
-        else:
-            return {"Existen prestamos asociados al Garante"}
+        return False
 
 
 @app.get("/find_all_garante/",tags=["Garante"])

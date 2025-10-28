@@ -68,8 +68,12 @@ async function delete_prestamo(event, item_id) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-
-	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	
+	if (items == false) {
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se pudo eliminar, existen deuda pendiente</p>` + `</div>`;
+	} else {
+		contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	}
 }
 
 async function find_all_prestamo(event) {

@@ -63,14 +63,12 @@ def update_prestamo(
 @app.delete("/delete_prestamo/",tags=["Prestamo"])
 def delete_prestamo(item_id:int,session: Session = Depends(get_session)):
     response = session.query(Prestamo).filter(Prestamo.id == item_id).first()
-    if response == None:
+
+    if response.monto_restante > 0: # type: ignore
         return False
     else:
-        if response.monto_restante > 0: # type: ignore
-            return {"Queda deuda pendiente"}
-        else:
-            session.delete(response)
-            session.commit()
+        session.delete(response)
+        session.commit()
 
 
 @app.get("/find_all_prestamo/",tags=["Prestamo"])
