@@ -59,11 +59,11 @@ async function update_prestatario(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestatario(event) {
+async function delete_prestatario(event,id) {
 	event.preventDefault();
-	const item_id = document.getElementById("prestatario_id_delete").value;
+	// const item_id = document.getElementById("prestatario_id_delete").value;
 
-	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${item_id}`, {
+	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${id}`, {
 		method: "DELETE",
 	});
 
@@ -97,6 +97,8 @@ async function find_all_prestatario(event) {
 				`<p><strong>Estado Empleo:</strong> ${prestatario.estado_empleo  ? 'Empleado' : 'Desempleado'}</p>` +
 				`<p><strong>Ocupacion:</strong> ${prestatario.ocupacion}</p>` +
 				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
+				`<button onclick="completarFormularioUpdate(${prestatario.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestatario.id})">Eliminar</button>` +
 				`</div>`				
 		)
 		.join("");
@@ -125,6 +127,8 @@ async function find_prestatario_by_id(event) {
 		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
 		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
 }
 
@@ -151,6 +155,8 @@ async function find_prestatario_by_dni(event) {
 		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
 		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
 }
 
@@ -184,6 +190,8 @@ async function find_prestatario_by_nombre_apellido(event) {
 				`<p><strong>Estado Empleo:</strong> ${prestatario.estado_empleo  ? 'Empleado' : 'Desempleado'}</p>` +
 				`<p><strong>Ocupacion:</strong> ${prestatario.ocupacion}</p>` +
 				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
+				`<button onclick="completarFormularioUpdate(${prestatario.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestatario.id})">Eliminar</button>` +
 				`</div>`				
 		)
 		.join("");
@@ -212,5 +220,33 @@ async function find_prestatario_by_prestamo(event) {
 		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
 		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
+}
+
+async function completarFormularioUpdate(item_id) {
+	const response = await fetch(`${BASE_URL}/find_prestatario_by_id/?item_id=${item_id}`);
+
+	const items = await response.json();
+
+	// asigna valores al formulario de "actualizar"
+	document.getElementById("prestatario_update_id").value = items.id;
+	document.getElementById("prestatario_update_nombre").value = items.nombre;
+	document.getElementById("prestatario_update_apellido").value = items.apellido;
+	document.getElementById("prestatario_update_dni").value = items.dni;
+	document.getElementById("prestatario_update_direccion").value = items.direccion;
+	document.getElementById("prestatario_update_telefono").value = items.telefono;
+	document.getElementById("prestatario_update_email").value = items.email;
+	document.getElementById("prestatario_update_estado_empleo").checked = items.estado_empleo;
+	document.getElementById("prestatario_update_ocupacion").value = items.ocupacion;
+	document.getElementById("prestatario_update_ingreso_anual").value = items.ingreso_anual;
+
+	// abrir la pestaña "Actualizar" (simula click en el tab)
+	const tab = document.querySelector('.tab-btn[data-target="actualizar"]');
+	if (tab) tab.click();
+
+	// opcional: desplazar el panel de actualizar a la vista
+	const panel = document.getElementById("actualizar");
+	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }

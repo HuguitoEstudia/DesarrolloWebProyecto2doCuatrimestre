@@ -98,6 +98,8 @@ async function find_all_prestamo(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -128,6 +130,8 @@ async function find_prestamo_by_id(event) {
 		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
 		`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
 		`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
 }
 
@@ -158,6 +162,8 @@ async function find_prestamo_by_mayor_que_monto(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -190,6 +196,8 @@ async function find_prestamo_by_menor_que_monto(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -222,6 +230,8 @@ async function find_prestamo_by_fecha_prestamo(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -254,6 +264,8 @@ async function find_prestamo_by_tasa_interes(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -286,6 +298,8 @@ async function find_prestamo_by_cuotas_totales(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -318,6 +332,8 @@ async function find_prestamo_by_cuotas_restantes(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -350,6 +366,8 @@ async function find_prestamo_by_prestatario(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -382,7 +400,36 @@ async function find_prestamo_by_garante(event) {
 				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
 				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
 				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
+}
+
+async function completarFormularioUpdate(item_id) {
+	const response = await fetch(`${BASE_URL}/find_prestamo_by_id/?item_id=${item_id}`);
+
+	const items = await response.json();
+
+	// asigna valores al formulario de "actualizar"
+	document.getElementById("prestamo_update_id").value = items.id;
+	document.getElementById("prestamo_update_monto").value = items.monto;
+	document.getElementById("prestamo_update_moneda").value = items.moneda;
+	document.getElementById("prestamo_update_tasa_interes").value = items.tasa_interes;
+	document.getElementById("prestamo_update_cuotas_totales").value = items.cuotas_totales;
+	document.getElementById("prestamo_update_cuotas_restantes").value = items.cuotas_restantes;
+	document.getElementById("prestamo_update_monto_cuota").value = items.monto_cuota;
+	document.getElementById("prestamo_update_monto_restante").value = items.monto_restante;
+	document.getElementById("prestamo_update_fecha_prestamo").value = items.fecha_prestamo;
+	document.getElementById("prestamo_update_prestatario_id").value = items.prestatario_id;
+	document.getElementById("prestamo_update_garante_id").value = items.garante_id;
+
+	// abrir la pestaña "Actualizar" (simula click en el tab)
+	const tab = document.querySelector('.tab-btn[data-target="actualizar"]');
+	if (tab) tab.click();
+
+	// opcional: desplazar el panel de actualizar a la vista
+	const panel = document.getElementById("actualizar");
+	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }

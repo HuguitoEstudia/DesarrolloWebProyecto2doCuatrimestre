@@ -84,17 +84,19 @@ async function find_all_garante(event) {
 
 	contenedor.innerHTML = items
 		.map(
-			(prestatario) =>
+			(garante) =>
 				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
-				`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+				`<p><strong>ID:</strong> ${garante.id}</p>` +
+				`<p><strong>Nombre:</strong> ${garante.nombre}</p>`+
+				`<p><strong>Apellido:</strong> ${garante.apellido}</p>` +
+				`<p><strong>Dni:</strong> ${garante.dni}</p>` +
+				`<p><strong>Direccion:</strong> ${garante.direccion}</p>` +
+				`<p><strong>Telefono:</strong> ${garante.telefono}</p>` +
+				`<p><strong>Email:</strong> ${garante.email}</p>` +
+				`<p><strong>Ingreso Anual:</strong> ${garante.ingreso_anual}</p>`+
+				`<p><strong>Descripcion:</strong> ${garante.garante_descripcion}</p>` +
+				`<button onclick="completarFormularioUpdate(${garante.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${garante.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -114,15 +116,17 @@ async function find_garante_by_id(event) {
 
 	contenedor.innerHTML =
 		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
-		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`<p><strong>ID:</strong> ${items.id}</p>` +
+		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${items.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
+		`<p><strong>Email:</strong> ${items.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
 }
 
@@ -140,15 +144,17 @@ async function find_garante_by_dni(event) {
 
 	contenedor.innerHTML =
 		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
-		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`<p><strong>ID:</strong> ${items.id}</p>` +
+		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${items.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
+		`<p><strong>Email:</strong> ${items.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
 }
 
@@ -170,17 +176,19 @@ async function find_garante_by_nombre_apellido(event) {
 
 	contenedor.innerHTML = items
 		.map(
-			(prestatario) =>
+			(garante) =>
 				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
-				`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+				`<p><strong>ID:</strong> ${garante.id}</p>` +
+				`<p><strong>Nombre:</strong> ${garante.nombre}</p>`+
+				`<p><strong>Apellido:</strong> ${garante.apellido}</p>` +
+				`<p><strong>Dni:</strong> ${garante.dni}</p>` +
+				`<p><strong>Direccion:</strong> ${garante.direccion}</p>` +
+				`<p><strong>Telefono:</strong> ${garante.telefono}</p>` +
+				`<p><strong>Email:</strong> ${garante.email}</p>` +
+				`<p><strong>Ingreso Anual:</strong> ${garante.ingreso_anual}</p>`+
+				`<p><strong>Descripcion:</strong> ${garante.garante_descripcion}</p>` +
+				`<button onclick="completarFormularioUpdate(${garante.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestatario(event,${garante.id})">Eliminar</button>` +
 				`</div>`
 		)
 		.join("");
@@ -200,14 +208,41 @@ async function find_garante_by_prestamo(event) {
 
 	contenedor.innerHTML =
 		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-		`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>` +
-		`<p><strong>Descripcion:</strong> ${prestatario.garante_descripcion}</p>` +
+		`<p><strong>ID:</strong> ${items.id}</p>` +
+		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
+		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
+		`<p><strong>Dni:</strong> ${items.dni}</p>` +
+		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
+		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
+		`<p><strong>Email:</strong> ${items.email}</p>` +
+		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
+		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
+		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
 		`</div>`;
+}
+
+async function completarFormularioUpdate(item_id) {
+	const response = await fetch(`${BASE_URL}/find_garante_by_id/?item_id=${item_id}`);
+
+	const items = await response.json();
+
+	// asigna valores al formulario de "actualizar"
+	document.getElementById("garante_update_id").value = items.id;
+	document.getElementById("garante_update_nombre").value = items.nombre;
+	document.getElementById("garante_update_apellido").value = items.apellido;
+	document.getElementById("garante_update_dni").value = items.dni;
+	document.getElementById("garante_update_direccion").value = items.direccion;
+	document.getElementById("garante_update_telefono").value = items.telefono;
+	document.getElementById("garante_update_email").value = items.email;
+	document.getElementById("garante_update_ingreso_anual").value = items.ingreso_anual;
+	document.getElementById("garante_update_garante_descripcion").value = items.garante_descripcion;
+
+	// abrir la pestaña "Actualizar" (simula click en el tab)
+	const tab = document.querySelector('.tab-btn[data-target="actualizar"]');
+	if (tab) tab.click();
+
+	// opcional: desplazar el panel de actualizar a la vista
+	const panel = document.getElementById("actualizar");
+	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }

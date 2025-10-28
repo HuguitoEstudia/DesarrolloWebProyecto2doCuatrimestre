@@ -31,7 +31,7 @@
             <div class="tabs" role="tablist" aria-label="Acciones garante">
                 <button class="tab-btn active" data-target="crear" role="tab" aria-selected="true">Crear</button>
                 <button class="tab-btn" data-target="actualizar" role="tab">Actualizar</button>
-                <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button>
+                <!-- <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button> -->
                 <button class="tab-btn" data-target="listar" role="tab">Buscar</button>
             </div>
 
@@ -66,12 +66,12 @@
                 </form>
             </div>
 
-            <div id="eliminar" class="panel" role="tabpanel">
+            <!-- <div id="eliminar" class="panel" role="tabpanel">
                 <form onsubmit="delete_garante(event)">
                     <input type="number" id="garante_id_delete" placeholder="Ingresa el ID" required>
                     <button type="submit">Eliminar por ID</button>
                 </form>
-            </div>
+            </div> -->
 
             <div id="listar" class="panel" role="tabpanel">
                 <form onsubmit="find_all_garante(event)">
