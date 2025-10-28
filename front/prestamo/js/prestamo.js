@@ -86,7 +86,7 @@ async function find_all_prestamo(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -116,7 +116,7 @@ async function find_prestamo_by_id(event) {
 	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 
 	contenedor.innerHTML =
-		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${items.id}</p>` +
 		`<p><strong>Monto:</strong> ${items.monto}</p>` +
 		`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
@@ -146,7 +146,7 @@ async function find_prestamo_by_mayor_que_monto(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -178,7 +178,7 @@ async function find_prestamo_by_menor_que_monto(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -210,7 +210,7 @@ async function find_prestamo_by_fecha_prestamo(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -242,7 +242,7 @@ async function find_prestamo_by_tasa_interes(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -274,7 +274,7 @@ async function find_prestamo_by_cuotas_totales(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -306,7 +306,7 @@ async function find_prestamo_by_cuotas_restantes(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -338,7 +338,7 @@ async function find_prestamo_by_prestatario(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
@@ -370,7 +370,7 @@ async function find_prestamo_by_garante(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestamo) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
 				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
 				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +

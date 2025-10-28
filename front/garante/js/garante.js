@@ -85,7 +85,7 @@ async function find_all_garante(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestatario) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
 				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
 				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
@@ -113,7 +113,7 @@ async function find_garante_by_id(event) {
 	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 
 	contenedor.innerHTML =
-		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
 		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
 		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
@@ -139,7 +139,7 @@ async function find_garante_by_dni(event) {
 	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 
 	contenedor.innerHTML =
-		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
 		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
 		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
@@ -171,7 +171,7 @@ async function find_garante_by_nombre_apellido(event) {
 	contenedor.innerHTML = items
 		.map(
 			(prestatario) =>
-				`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+				`<div class="items_recuperados">` +
 				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
 				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
 				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
@@ -199,7 +199,7 @@ async function find_garante_by_prestamo(event) {
 	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 
 	contenedor.innerHTML =
-		`<div style="padding-left: 1%; border: 3px solid #0f62fe; width: 99%; border-radius: 15px; margin: 10px;">` +
+		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${prestatario.id}</p>` +
 		`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>` +
 		`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +

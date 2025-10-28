@@ -182,3 +182,11 @@ body{
   outline:3px solid rgba(15,98,254,0.12);
   outline-offset:2px;
 }
+
+.items_recuperados{
+  padding-left: 1%;
+  border: 3px solid #0f62fe;
+  width: 99%;
+  border-radius: 15px;
+  margin: 10px;
+}
