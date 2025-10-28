@@ -101,43 +101,49 @@
                 <p></p>
                 <form onsubmit="find_prestamo_by_mayor_que_monto(event)">
                     <input type="number" id="prestamo_mayor_que_monto" placeholder="Ingresa el MONTO" required>
-                    <button type="submit">Por monto mayor que</button>
+                    <button type="submit">Listar por monto mayor que</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_menor_que_monto(event)">
                     <input type="number" id="prestamo_menor_que_monto" placeholder="Ingresa el MONTO" required>
-                    <button type="submit">Por monto menor que</button>
+                    <button type="submit">Listar por monto menor que</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_fecha_prestamo(event)">
                     <input type="date" id="prestamo_fecha" placeholder="Ingresa la FECHA" required>
-                    <button type="submit">Por fecha</button>
+                    <button type="submit">Listar por fecha</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_tasa_interes(event)">
                     <input type="number" id="prestamo_tasa_interes" placeholder="Ingresa la TASA DE INTERES" required>
-                    <button type="submit">Por tasa de interés</button>
+                    <button type="submit">Listar por tasa de interés</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_cuotas_totales(event)">
                     <input type="number" id="prestamo_cuotas_totales" placeholder="Ingresa las CUOTAS TOTALES" required>
-                    <button type="submit">Por cuotas totales</button>
+                    <button type="submit">Listar por cuotas totales</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_cuotas_restantes(event)">
                     <input type="number" id="prestamo_cuotas_restantes" placeholder="Ingresa las CUOTAS RESTANTES"
                         required>
-                    <button type="submit">Por cuotas restantes</button>
+                    <button type="submit">Listar por cuotas restantes</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_prestatario(event)">
-                    <input type="number" id="prestamo_prestatario_id" placeholder="Ingresa el PRESTATARIO" required>
-                    <button type="submit">Por prestatario</button>
+                    <!-- <input type="number" id="prestamo_prestatario_id" placeholder="Ingresa el PRESTATARIO" required> -->
+                    <select id="prestamo_prestatario_id" required>
+                        <option value="">Selecciona un prestatario</option>
+                    </select>
+                    <button type="submit">Listar por prestatario</button>
                 </form>
                 <p></p>
                 <form onsubmit="find_prestamo_by_garante(event)">
-                    <input type="number" id="prestamo_garante_id" placeholder="Ingresa el GARANTE" required>
-                    <button type="submit">Por garante</button>
+                    <!-- <input type="number" id="prestamo_garante_id" placeholder="Ingresa el GARANTE" required> -->
+                    <select id="prestamo_garante_id" required>
+                        <option value="">Selecciona un garante</option>
+                    </select>
+                    <button type="submit">Listar por garante</button>
                 </form>
             </div>
 

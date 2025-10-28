@@ -327,6 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
     llenarSelect('garante_id', "find_all_garante");
 	llenarSelect('prestamo_update_prestatario_id', 'find_all_prestatario');
 	llenarSelect('prestamo_update_garante_id', 'find_all_garante');
+	llenarSelect('prestamo_prestatario_id', 'find_all_prestatario');
+	llenarSelect('prestamo_garante_id', 'find_all_garante');
 });
 
 
