@@ -87,7 +87,8 @@ async function find_all_prestamo(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -103,7 +104,8 @@ async function find_prestamo_by_id(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = devolverinnerHTML(items);
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -119,7 +121,8 @@ async function find_prestamo_by_mayor_que_monto(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -135,7 +138,8 @@ async function find_prestamo_by_menor_que_monto(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -153,7 +157,8 @@ async function find_prestamo_by_fecha_prestamo(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -169,7 +174,8 @@ async function find_prestamo_by_tasa_interes(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -187,7 +193,8 @@ async function find_prestamo_by_cuotas_totales(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -205,7 +212,8 @@ async function find_prestamo_by_cuotas_restantes(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -221,7 +229,8 @@ async function find_prestamo_by_prestatario(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
@@ -237,11 +246,21 @@ async function find_prestamo_by_garante(event) {
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestamos</p>` + `</div>`;
 	} else {
-		contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+		const htmlArray = await Promise.all(items.map((prestamo) => devolverinnerHTML(prestamo)));
+		contenedor.innerHTML = htmlArray.join("");
 	}
 }
 
-function devolverinnerHTML(items) {
+async function devolverinnerHTML(items) {
+
+	const response_prestatario = await fetch(`${BASE_URL}/find_prestatario_by_id/?item_id=${items.prestatario_id}`);
+
+	const item_prestatario = await response_prestatario.json();
+
+	const response_garante = await fetch(`${BASE_URL}/find_garante_by_id/?item_id=${items.garante_id}`);
+
+	const item_garante = await response_garante.json();	
+
 	return (
 		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${items.id}</p>` +
@@ -253,8 +272,8 @@ function devolverinnerHTML(items) {
 		`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
 		`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>` +
 		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
-		`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
-		`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
+		`<p><strong>Prestatario:</strong> ${item_prestatario.nombre} ${item_prestatario.apellido} - <strong>DNI:</strong> ${item_prestatario.dni}</p>` +
+		`<p><strong>Garante:</strong> ${item_garante.nombre} ${item_garante.apellido} - <strong>DNI:</strong> ${item_garante.dni}</p>` +
 		`<button onclick="completarFormularioUpdate(${items.id})"><strong>Actualizar</strong></button>` +
 		`<button onclick="delete_prestamo(event,${items.id})"><strong>Eliminar</strong></button>` +
 		`</div>`

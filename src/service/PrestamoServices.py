@@ -88,7 +88,7 @@ def find_prestamo_by_id(item_id:int,session: Session = Depends(get_session)):
         return False
     else:
         # diccionario
-        return response
+        return [response]
 
 
 @app.get("/find_prestamo_by_mayor_que_monto/",tags=["Prestamo"])
