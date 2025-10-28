@@ -306,6 +306,8 @@ async function llenarSelect(selectId, funcion) {
 document.addEventListener('DOMContentLoaded', () => {
     llenarSelect('prestatario_id', "find_all_prestatario");
     llenarSelect('garante_id', "find_all_garante");
+	llenarSelect('prestamo_update_prestatario_id', 'find_all_prestatario');
+	llenarSelect('prestamo_update_garante_id', 'find_all_garante');
 });
 
 

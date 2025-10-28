@@ -30,7 +30,6 @@
         <aside class="card" aria-label="panel de acciones prestamo">
             <div class="tabs" role="tablist" aria-label="Acciones préstamo">
                 <button class="tab-btn active" data-target="crear" role="tab" aria-selected="true">Crear</button>
-                <!-- <button class="tab-btn" data-target="actualizar" role="tab" onclick="llenarSelect('prestatario_id', 'find_all_prestatario');llenarSelect('garante_id', 'find_all_garante');">Actualizar</button> -->
                 <button class="tab-btn" data-target="actualizar" role="tab">Actualizar</button>
                 <!-- <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button> -->
                 <button class="tab-btn" data-target="listar" role="tab">Buscar</button>
@@ -72,9 +71,15 @@
                         required>
                     <input type="date" id="prestamo_update_fecha_prestamo" placeholder="Ingresa la FECHA DEL PRESTAMO"
                         required>
-                    <input type="number" id="prestamo_update_prestatario_id" placeholder="Ingresa el PRESTATARIO"
+                    <!-- <input type="number" id="prestamo_update_prestatario_id" placeholder="Ingresa el PRESTATARIO"
                         required>
-                    <input type="number" id="prestamo_update_garante_id" placeholder="Ingresa el GARANTE" required>
+                    <input type="number" id="prestamo_update_garante_id" placeholder="Ingresa el GARANTE" required> -->
+                    <select id="prestamo_update_prestatario_id" required>
+                        <option value="">Selecciona un prestatario</option>
+                    </select>
+                    <select id="prestamo_update_garante_id" required>
+                        <option value="">Selecciona un garante</option>
+                    </select>
                     <button type="submit">Actualizar préstamo</button>
                 </form>
             </div>
