@@ -288,6 +288,26 @@ async function completarFormularioUpdate(item_id) {
 	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
+async function llenarSelect(selectId, funcion) {
+    const select = document.getElementById(selectId);
+
+	const response = await fetch(`${BASE_URL}/${funcion}/`);
+
+	const items = await response.json();
+    
+    items.forEach(objeto => {
+        const option = document.createElement('option');
+        option.value = objeto.id; // Valor que se enviará al servidor
+        option.textContent = objeto.nombre+" "+objeto.apellido+" - DNI: "+objeto.dni; // Texto que verá el usuario
+        select.appendChild(option);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    llenarSelect('prestatario_id', "find_all_prestatario");
+    llenarSelect('garante_id', "find_all_garante");
+});
+
 
 (function () {
 	const tabs = document.querySelectorAll(".tab-btn");
