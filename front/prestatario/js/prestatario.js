@@ -59,11 +59,10 @@ async function update_prestatario(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestatario(event,id) {
+async function delete_prestatario(event,item_id) {
 	event.preventDefault();
-	// const item_id = document.getElementById("prestatario_id_delete").value;
 
-	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${id}`, {
+	const response = await fetch(`${BASE_URL}/delete_prestatario/?item_id=${item_id}`, {
 		method: "DELETE",
 	});
 
@@ -82,26 +81,7 @@ async function find_all_prestatario(event) {
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
-	// contenedor.innerHTML = items.map((prestatario) => `<p>${JSON.stringify(prestatario)}</p>`).join("");
-	contenedor.innerHTML = items
-		.map(
-			(prestatario) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-				`<p><strong>Estado Empleo:</strong> ${prestatario.estado_empleo  ? 'Empleado' : 'Desempleado'}</p>` +
-				`<p><strong>Ocupacion:</strong> ${prestatario.ocupacion}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
-				`<button onclick="completarFormularioUpdate(${prestatario.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestatario.id})">Eliminar</button>` +
-				`</div>`				
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestatario) => devolverinnerHTML(prestatario)).join("");
 }
 
 async function find_prestatario_by_id(event) {
@@ -114,22 +94,7 @@ async function find_prestatario_by_id(event) {
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-	contenedor.innerHTML =
-		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${items.id}</p>` +
-		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${items.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
-		`<p><strong>Email:</strong> ${items.email}</p>` +
-		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
-		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
 }
 
 async function find_prestatario_by_dni(event) {
@@ -142,22 +107,7 @@ async function find_prestatario_by_dni(event) {
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-	contenedor.innerHTML =
-		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${items.id}</p>` +
-		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${items.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
-		`<p><strong>Email:</strong> ${items.email}</p>` +
-		`<p><strong>Estado Empleo:</strong> ${items.estado_empleo ? "Empleado" : "Desempleado"}</p>` +
-		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
 }
 
 async function find_prestatario_by_nombre_apellido(event) {
@@ -174,27 +124,7 @@ async function find_prestatario_by_nombre_apellido(event) {
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestatario) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestatario.id}</p>` +
-				`<p><strong>Nombre:</strong> ${prestatario.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${prestatario.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${prestatario.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${prestatario.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${prestatario.telefono}</p>` +
-				`<p><strong>Email:</strong> ${prestatario.email}</p>` +
-				`<p><strong>Estado Empleo:</strong> ${prestatario.estado_empleo  ? 'Empleado' : 'Desempleado'}</p>` +
-				`<p><strong>Ocupacion:</strong> ${prestatario.ocupacion}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${prestatario.ingreso_anual}</p>`+
-				`<button onclick="completarFormularioUpdate(${prestatario.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestatario.id})">Eliminar</button>` +
-				`</div>`				
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestatario) => devolverinnerHTML(prestatario)).join("");
 }
 
 async function find_prestatario_by_prestamo(event) {
@@ -207,8 +137,11 @@ async function find_prestatario_by_prestamo(event) {
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-	contenedor.innerHTML =
+	contenedor.innerHTML = devolverinnerHTML(items)
+}
+
+function devolverinnerHTML(items){
+	return (
 		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${items.id}</p>` +
 		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
@@ -221,8 +154,9 @@ async function find_prestatario_by_prestamo(event) {
 		`<p><strong>Ocupacion:</strong> ${items.ocupacion}</p>` +
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
 		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+		`<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
+		`</div>`
+	);
 }
 
 async function completarFormularioUpdate(item_id) {

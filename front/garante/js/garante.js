@@ -57,9 +57,8 @@ async function update_garante(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_garante(event) {
+async function delete_garante(event,item_id) {
 	event.preventDefault();
-	const item_id = document.getElementById("garante_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_garante/?item_id=${item_id}`, {
 		method: "DELETE"
@@ -80,26 +79,7 @@ async function find_all_garante(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	// contenedor.innerHTML = items.map((garante) => `<p>${JSON.stringify(garante)}</p>`).join("");
-
-	contenedor.innerHTML = items
-		.map(
-			(garante) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${garante.id}</p>` +
-				`<p><strong>Nombre:</strong> ${garante.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${garante.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${garante.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${garante.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${garante.telefono}</p>` +
-				`<p><strong>Email:</strong> ${garante.email}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${garante.ingreso_anual}</p>`+
-				`<p><strong>Descripcion:</strong> ${garante.garante_descripcion}</p>` +
-				`<button onclick="completarFormularioUpdate(${garante.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${garante.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
 }
 
 async function find_garante_by_id(event) {
@@ -112,22 +92,7 @@ async function find_garante_by_id(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML =
-		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${items.id}</p>` +
-		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${items.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
-		`<p><strong>Email:</strong> ${items.email}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
-		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
 }
 
 async function find_garante_by_dni(event) {
@@ -140,22 +105,7 @@ async function find_garante_by_dni(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML =
-		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${items.id}</p>` +
-		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
-		`<p><strong>Apellido:</strong> ${items.apellido}</p>` +
-		`<p><strong>Dni:</strong> ${items.dni}</p>` +
-		`<p><strong>Direccion:</strong> ${items.direccion}</p>` +
-		`<p><strong>Telefono:</strong> ${items.telefono}</p>` +
-		`<p><strong>Email:</strong> ${items.email}</p>` +
-		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
-		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
 }
 
 async function find_garante_by_nombre_apellido(event) {
@@ -172,26 +122,7 @@ async function find_garante_by_nombre_apellido(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(garante) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${garante.id}</p>` +
-				`<p><strong>Nombre:</strong> ${garante.nombre}</p>`+
-				`<p><strong>Apellido:</strong> ${garante.apellido}</p>` +
-				`<p><strong>Dni:</strong> ${garante.dni}</p>` +
-				`<p><strong>Direccion:</strong> ${garante.direccion}</p>` +
-				`<p><strong>Telefono:</strong> ${garante.telefono}</p>` +
-				`<p><strong>Email:</strong> ${garante.email}</p>` +
-				`<p><strong>Ingreso Anual:</strong> ${garante.ingreso_anual}</p>`+
-				`<p><strong>Descripcion:</strong> ${garante.garante_descripcion}</p>` +
-				`<button onclick="completarFormularioUpdate(${garante.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${garante.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((garante) => devolverinnerHTML(garante)).join("");
 }
 
 async function find_garante_by_prestamo(event) {
@@ -204,9 +135,11 @@ async function find_garante_by_prestamo(event) {
 
 	const contenedor = document.getElementById("garantes_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
+}
 
-	contenedor.innerHTML =
+function devolverinnerHTML(items){
+	return (
 		`<div class="items_recuperados">` +
 		`<p><strong>ID:</strong> ${items.id}</p>` +
 		`<p><strong>Nombre:</strong> ${items.nombre}</p>` +
@@ -218,8 +151,9 @@ async function find_garante_by_prestamo(event) {
 		`<p><strong>Ingreso Anual:</strong> ${items.ingreso_anual}</p>` +
 		`<p><strong>Descripcion:</strong> ${items.garante_descripcion}</p>` +
 		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+        `<button onclick="delete_garante(event,${items.id})">Eliminar</button>` +
+		`</div>`
+	);
 }
 
 async function completarFormularioUpdate(item_id) {

@@ -58,9 +58,8 @@ async function update_prestamo(event) {
 	contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 }
 
-async function delete_prestamo(event) {
+async function delete_prestamo(event,item_id) {
 	event.preventDefault();
-	const item_id = document.getElementById("prestamo_id_delete").value;
 
 	const response = await fetch(`${BASE_URL}/delete_prestamo/?item_id=${item_id}`, {
 		method: "DELETE"
@@ -81,28 +80,8 @@ async function find_all_prestamo(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = items.map((prestamo) => `<p>${JSON.stringify(prestamo)}</p>`).join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
 }
 
 async function find_prestamo_by_id(event) {
@@ -115,24 +94,7 @@ async function find_prestamo_by_id(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML =
-		`<div class="items_recuperados">` +
-		`<p><strong>ID:</strong> ${items.id}</p>` +
-		`<p><strong>Monto:</strong> ${items.monto}</p>` +
-		`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
-		`<p><strong>Tasa de Interes:</strong> ${items.tasa_interes}</p>` +
-		`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
-		`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
-		`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
-		`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>` +
-		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
-		`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
-		`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
-		`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
-        `<button onclick="delete_prestatario(event,${items.id})">Eliminar</button>` +
-		`</div>`;
+	contenedor.innerHTML = devolverinnerHTML(items);
 }
 
 async function find_prestamo_by_mayor_que_monto(event) {
@@ -145,28 +107,7 @@ async function find_prestamo_by_mayor_que_monto(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_menor_que_monto(event) {
@@ -179,28 +120,7 @@ async function find_prestamo_by_menor_que_monto(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_fecha_prestamo(event) {
@@ -213,28 +133,7 @@ async function find_prestamo_by_fecha_prestamo(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_tasa_interes(event) {
@@ -247,28 +146,7 @@ async function find_prestamo_by_tasa_interes(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_cuotas_totales(event) {
@@ -281,28 +159,7 @@ async function find_prestamo_by_cuotas_totales(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_cuotas_restantes(event) {
@@ -315,28 +172,7 @@ async function find_prestamo_by_cuotas_restantes(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_prestatario(event) {
@@ -349,28 +185,7 @@ async function find_prestamo_by_prestatario(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
-
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
-				`</div>`
-		)
-		.join("");
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
 }
 
 async function find_prestamo_by_garante(event) {
@@ -383,28 +198,27 @@ async function find_prestamo_by_garante(event) {
 
 	const contenedor = document.getElementById("prestamos_pantalla");
 
-	// contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
+	contenedor.innerHTML = items.map((prestamo) => devolverinnerHTML(prestamo)).join("");
+}
 
-	contenedor.innerHTML = items
-		.map(
-			(prestamo) =>
-				`<div class="items_recuperados">` +
-				`<p><strong>ID:</strong> ${prestamo.id}</p>` +
-				`<p><strong>Monto:</strong> ${prestamo.monto}</p>`+
-				`<p><strong>Moneda:</strong> ${prestamo.moneda}</p>` +
-				`<p><strong>Tasa de Interes:</strong> ${prestamo.tasa_interes}</p>` +
-				`<p><strong>Cuotas Totales:</strong> ${prestamo.cuotas_totales}</p>` +
-				`<p><strong>Cuotas Restantes:</strong> ${prestamo.cuotas_restantes}</p>` +
-				`<p><strong>Monto por Cuota:</strong> ${prestamo.monto_cuota}</p>` +
-				`<p><strong>Monto Restante:</strong> ${prestamo.monto_restante}</p>`+
-				`<p><strong>Fecha del Prestamo:</strong> ${prestamo.fecha_prestamo}</p>` +
-				`<p><strong>ID del Prestatario:</strong> ${prestamo.prestatario_id}</p>` +
-				`<p><strong>ID del Garante:</strong> ${prestamo.garante_id}</p>` +
-				`<button onclick="completarFormularioUpdate(${prestamo.id})">Actualizar</button>` +
-        		`<button onclick="delete_prestatario(event,${prestamo.id})">Eliminar</button>` +
+function devolverinnerHTML(items){
+	return (
+		`<div class="items_recuperados">` +
+				`<p><strong>ID:</strong> ${items.id}</p>` +
+				`<p><strong>Monto:</strong> ${items.monto}</p>`+
+				`<p><strong>Moneda:</strong> ${items.moneda}</p>` +
+				`<p><strong>Tasa de Interes:</strong> ${items.tasa_interes}</p>` +
+				`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
+				`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
+				`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
+				`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>`+
+				`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
+				`<p><strong>ID del Prestatario:</strong> ${items.prestatario_id}</p>` +
+				`<p><strong>ID del Garante:</strong> ${items.garante_id}</p>` +
+				`<button onclick="completarFormularioUpdate(${items.id})">Actualizar</button>` +
+        		`<button onclick="delete_prestamo(event,${items.id})">Eliminar</button>` +
 				`</div>`
-		)
-		.join("");
+	);
 }
 
 async function completarFormularioUpdate(item_id) {
