@@ -283,7 +283,8 @@ async function devolverinnerHTML(items) {
 async function completarFormularioUpdate(item_id) {
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_id/?item_id=${item_id}`);
 
-	const items = await response.json();
+	const lista_items = await response.json();
+	const items = lista_items[0]
 
 	// asigna valores al formulario de "actualizar"
 	document.getElementById("prestamo_update_id").value = items.id;
