@@ -20,8 +20,8 @@ def create_prestamo(
                         tasa_interes=prestamo.tasa_interes,
                         cuotas_totales=prestamo.cuotas_totales,
                         cuotas_restantes=prestamo.cuotas_totales,
-                        monto_cuota=prestamo.monto/prestamo.cuotas_totales,
-                        monto_restante=prestamo.monto,
+                        monto_cuota=(prestamo.monto*((prestamo.tasa_interes/100)+1))/prestamo.cuotas_totales,
+                        monto_restante=prestamo.monto*((prestamo.tasa_interes/100)+1),
                         fecha_prestamo=prestamo.fecha_prestamo,
                         prestatario_id=prestamo.prestatario_id,
                         garante_id=prestamo.garante_id
