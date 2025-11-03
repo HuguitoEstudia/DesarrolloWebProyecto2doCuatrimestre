@@ -270,7 +270,7 @@ async function devolverinnerHTML(items) {
 		`<p><strong>Cuotas Totales:</strong> ${items.cuotas_totales}</p>` +
 		`<p><strong>Cuotas Restantes:</strong> ${items.cuotas_restantes}</p>` +
 		`<p><strong>Monto por Cuota:</strong> ${items.monto_cuota}</p>` +
-		`<p><strong>Deuda Restante:</strong> ${items.monto_restante}</p>` +
+		`<p><strong>Monto Restante:</strong> ${items.monto_restante}</p>` +
 		`<p><strong>Fecha del Prestamo:</strong> ${items.fecha_prestamo}</p>` +
 		`<p><strong>Prestatario:</strong> ${item_prestatario.nombre} ${item_prestatario.apellido} - <strong>DNI:</strong> ${item_prestatario.dni}</p>` +
 		`<p><strong>Garante:</strong> ${item_garante.nombre} ${item_garante.apellido} - <strong>DNI:</strong> ${item_garante.dni}</p>` +
