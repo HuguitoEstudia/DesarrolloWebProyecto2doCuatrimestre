@@ -69,9 +69,9 @@ async function delete_prestatario(event, item_id) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
-	
+
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se pudo eliminar, existen prestamos asociados al Prestatario</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se pudo eliminar, existen prestamos asociados al Prestatario</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = `<p>${JSON.stringify(items)}</p>`;
 	}
@@ -86,7 +86,7 @@ async function find_all_prestatario(event) {
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se encontraron Prestatarios</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestatarios</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = items.map((prestatario) => devolverinnerHTML(prestatario)).join("");
 	}
@@ -103,7 +103,7 @@ async function find_prestatario_by_id(event) {
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se encontraron Prestatarios</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestatarios</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = devolverinnerHTML(items);
 	}
@@ -120,7 +120,7 @@ async function find_prestatario_by_dni(event) {
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se encontraron Prestatarios</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestatarios</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = devolverinnerHTML(items);
 	}
@@ -132,16 +132,14 @@ async function find_prestatario_by_nombre_apellido(event) {
 
 	const item_apellido = document.getElementById("prestatario_apellido").value;
 
-	const response = await fetch(
-		`${BASE_URL}/find_prestatario_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`
-	);
+	const response = await fetch(`${BASE_URL}/find_prestatario_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`);
 
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se encontraron Prestatarios</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestatarios</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = items.map((prestatario) => devolverinnerHTML(prestatario)).join("");
 	}
@@ -158,7 +156,7 @@ async function find_prestatario_by_prestamo(event) {
 	const contenedor = document.getElementById("prestatarios_pantalla");
 
 	if (items == false) {
-		contenedor.innerHTML = `<div class="items_recuperados">` +`<p>No se encontraron Prestatarios</p>` + `</div>`;
+		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se encontraron Prestatarios</p>` + `</div>`;
 	} else {
 		contenedor.innerHTML = devolverinnerHTML(items);
 	}
@@ -208,7 +206,6 @@ async function completarFormularioUpdate(item_id) {
 	const panel = document.getElementById("actualizar");
 	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }
-
 
 (function () {
 	const tabs = document.querySelectorAll(".tab-btn");

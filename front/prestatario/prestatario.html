@@ -1,118 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Gestión · Prestatarios</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Gestión · Prestatarios</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+	<body>
+		<header class="header">
+			<div class="brand">
+				<div class="logo">SG</div>
+				<div>
+					<div style="font-weight: 800">Sistema de Gestión</div>
+					<div style="font-size: 13px; color: var(--muted)">Prestatarios</div>
+				</div>
+			</div>
 
-<body>
-    <header class="header">
-        <div class="brand">
-            <div class="logo">SG</div>
-            <div>
-                <div style="font-weight:800">Sistema de Gestión</div>
-                <div style="font-size:13px;color:var(--muted)">Prestatarios</div>
-            </div>
-        </div>
+			<nav>
+				<a href="../prestatario/prestatario.html" class="active">Prestatarios</a>
+				<a href="../garante/garante.html">Garantes</a>
+				<a href="../prestamo/prestamo.html">Préstamos</a>
+			</nav>
+		</header>
 
-        <nav>
+		<main class="container">
+			<aside class="card" aria-label="panel de acciones prestatario">
+				<div class="tabs" role="tablist" aria-label="Acciones prestatario">
+					<button class="tab-btn active" data-target="crear" role="tab" aria-selected="true">Crear</button>
+					<button class="tab-btn" data-target="actualizar" role="tab">Actualizar</button>
+					<!-- <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button> -->
+					<button class="tab-btn" data-target="listar" role="tab">Buscar</button>
+				</div>
 
-            <a href="../prestatario/prestatario.html" class="active">Prestatarios</a>
-            <a href="../garante/garante.html">Garantes</a>
-            <a href="../prestamo/prestamo.html">Préstamos</a>
-        </nav>
-    </header>
+				<div id="crear" class="panel active" role="tabpanel">
+					<form onsubmit="create_prestatario(event)">
+						<button type="submit" style="display: none"></button>
+						<input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required />
+						<input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required />
+						<input type="number" id="dni" placeholder="Ingresa el DNI" required />
+						<input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required />
+						<input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required />
+						<input type="email" id="email" placeholder="Ingresa el EMAIL" required />
+						<label><input type="checkbox" id="estado_empleo" /> Está empleado actualmente</label>
+						<input type="text" id="ocupacion" placeholder="Ingresa la OCUPACION" required />
+						<input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required />
+						<button type="submit">Crear prestatario</button>
+					</form>
+				</div>
 
-    <main class="container">
-        <aside class="card" aria-label="panel de acciones prestatario">
-            <div class="tabs" role="tablist" aria-label="Acciones prestatario">
-                <button class="tab-btn active" data-target="crear" role="tab" aria-selected="true">Crear</button>
-                <button class="tab-btn" data-target="actualizar" role="tab">Actualizar</button>
-                <!-- <button class="tab-btn" data-target="eliminar" role="tab">Eliminar</button> -->
-                <button class="tab-btn" data-target="listar" role="tab">Buscar</button>
-            </div>
+				<div id="actualizar" class="panel" role="tabpanel">
+					<form onsubmit="update_prestatario(event)">
+						<input type="number" id="prestatario_update_id" placeholder="Ingresa el ID" required />
+						<input type="text" id="prestatario_update_nombre" placeholder="Ingresa el NOMBRE" required />
+						<input type="text" id="prestatario_update_apellido" placeholder="Ingresa el APELLIDO" required />
+						<input type="number" id="prestatario_update_dni" placeholder="Ingresa el DNI" required />
+						<input type="text" id="prestatario_update_direccion" placeholder="Ingresa la DIRECCION" required />
+						<input type="number" id="prestatario_update_telefono" placeholder="Ingresa el TELEFONO" required />
+						<input type="email" id="prestatario_update_email" placeholder="Ingresa el EMAIL" required />
+						<label><input type="checkbox" id="prestatario_update_estado_empleo" /> Está empleado actualmente</label>
+						<input type="text" id="prestatario_update_ocupacion" placeholder="Ingresa la OCUPACION" />
+						<input type="number" id="prestatario_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required />
+						<button type="submit">Actualizar prestatario</button>
+					</form>
+				</div>
 
-            <div id="crear" class="panel active" role="tabpanel">
-                <form onsubmit="create_prestatario(event)">
-                    <button type="submit" style="display:none"></button>
-                    <input type="text" id="nombre" placeholder="Ingresa el NOMBRE" required>
-                    <input type="text" id="apellido" placeholder="Ingresa el APELLIDO" required>
-                    <input type="number" id="dni" placeholder="Ingresa el DNI" required>
-                    <input type="text" id="direccion" placeholder="Ingresa la DIRECCION" required>
-                    <input type="number" id="telefono" placeholder="Ingresa el TELEFONO" required>
-                    <input type="text" id="email" placeholder="Ingresa el EMAIL" required>
-                    <label><input type="checkbox" id="estado_empleo"> Está empleado actualmente</label>
-                    <input type="text" id="ocupacion" placeholder="Ingresa la OCUPACION" required>
-                    <input type="number" id="ingreso_anual" placeholder="Ingresa el INGRESO ANUAL" required>
-                    <button type="submit">Crear prestatario</button>
-                </form>
-            </div>
-
-            <div id="actualizar" class="panel" role="tabpanel">
-                <form onsubmit="update_prestatario(event)">
-                    <input type="number" id="prestatario_update_id" placeholder="Ingresa el ID" required>
-                    <input type="text" id="prestatario_update_nombre" placeholder="Ingresa el NOMBRE" required>
-                    <input type="text" id="prestatario_update_apellido" placeholder="Ingresa el APELLIDO" required>
-                    <input type="number" id="prestatario_update_dni" placeholder="Ingresa el DNI" required>
-                    <input type="text" id="prestatario_update_direccion" placeholder="Ingresa la DIRECCION" required>
-                    <input type="number" id="prestatario_update_telefono" placeholder="Ingresa el TELEFONO" required>
-                    <input type="text" id="prestatario_update_email" placeholder="Ingresa el EMAIL" required>
-                    <label><input type="checkbox" id="prestatario_update_estado_empleo"> Está empleado
-                        actualmente</label>
-                    <input type="text" id="prestatario_update_ocupacion" placeholder="Ingresa la OCUPACION">
-                    <input type="number" id="prestatario_update_ingreso_anual" placeholder="Ingresa el INGRESO ANUAL"
-                        required>
-                    <button type="submit">Actualizar prestatario</button>
-                </form>
-            </div>
-
-            <!-- <div id="eliminar" class="panel" role="tabpanel">
+				<!-- <div id="eliminar" class="panel" role="tabpanel">
                 <form onsubmit="delete_prestatario(event)">
                     <input type="number" id="prestatario_id_delete" placeholder="Ingresa el ID" required>
                     <button type="submit">Eliminar por ID</button>
                 </form>
             </div> -->
 
-            <div id="listar" class="panel" role="tabpanel">
-                <form onsubmit="find_all_prestatario(event)">
-                    <button type="submit">Listar todos</button>
-                </form>
-                <p>-</p>
-                <form onsubmit="find_prestatario_by_id(event)">
-                    <input type="number" id="prestatario_id" placeholder="Ingresa el ID" required>
-                    <button type="submit">Listar por ID</button>
-                </form>
-                <p></p>
-                <form onsubmit="find_prestatario_by_dni(event)">
-                    <input type="number" id="prestatario_dni" placeholder="Ingresa el DNI" required>
-                    <button type="submit">Listar por DNI</button>
-                </form>
-                <p></p>
-                <form onsubmit="find_prestatario_by_nombre_apellido(event)">
-                    <input type="text" id="prestatario_nombre" placeholder="Ingresa el NOMBRE" required>
-                    <input type="text" id="prestatario_apellido" placeholder="Ingresa el APELLIDO" required>
-                    <button type="submit">Listar por Nombre y Apellido</button>
-                </form>
-                <p></p>
-                <form onsubmit="find_prestatario_by_prestamo(event)">
-                    <input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required>
-                    <button type="submit">Listar por Préstamo</button>
-                </form>
-            </div>
+				<div id="listar" class="panel" role="tabpanel">
+					<form onsubmit="find_all_prestatario(event)">
+						<button type="submit">Listar todos</button>
+					</form>
+					<p>-</p>
+					<form onsubmit="find_prestatario_by_id(event)">
+						<input type="number" id="prestatario_id" placeholder="Ingresa el ID" required />
+						<button type="submit">Listar por ID</button>
+					</form>
+					<p></p>
+					<form onsubmit="find_prestatario_by_dni(event)">
+						<input type="number" id="prestatario_dni" placeholder="Ingresa el DNI" required />
+						<button type="submit">Listar por DNI</button>
+					</form>
+					<p></p>
+					<form onsubmit="find_prestatario_by_nombre_apellido(event)">
+						<input type="text" id="prestatario_nombre" placeholder="Ingresa el NOMBRE" required />
+						<input type="text" id="prestatario_apellido" placeholder="Ingresa el APELLIDO" required />
+						<button type="submit">Listar por Nombre y Apellido</button>
+					</form>
+					<p></p>
+					<form onsubmit="find_prestatario_by_prestamo(event)">
+						<input type="number" id="prestamo_id" placeholder="Ingresa el ID DEL PRESTAMO" required />
+						<button type="submit">Listar por Préstamo</button>
+					</form>
+				</div>
 
-            <p></p>
-        </aside>
+				<p></p>
+			</aside>
 
-        <section class="results" aria-live="polite">
-            <h2>Resultados - Prestatarios</h2>
-            <div id="prestatarios_pantalla"></div>
-        </section>
-    </main>
+			<section class="results" aria-live="polite">
+				<h2>Resultados - Prestatarios</h2>
+				<div id="prestatarios_pantalla"></div>
+			</section>
+		</main>
 
-    <!-- <script>
+		<!-- <script>
         (function () {
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(btn => {
@@ -128,7 +124,6 @@
         })();
     </script> -->
 
-    <script src="js/prestatario.js"></script>
-</body>
-
+		<script src="js/prestatario.js"></script>
+	</body>
 </html>

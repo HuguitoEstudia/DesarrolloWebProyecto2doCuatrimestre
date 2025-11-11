@@ -68,7 +68,7 @@ async function delete_prestamo(event, item_id) {
 	const items = await response.json();
 
 	const contenedor = document.getElementById("prestamos_pantalla");
-	
+
 	if (items == false) {
 		contenedor.innerHTML = `<div class="items_recuperados">` + `<p>No se pudo eliminar, existen deuda pendiente</p>` + `</div>`;
 	} else {
@@ -147,9 +147,7 @@ async function find_prestamo_by_fecha_prestamo(event) {
 	event.preventDefault();
 	const item_fecha_prestamo = document.getElementById("prestamo_fecha").value;
 
-	const response = await fetch(
-		`${BASE_URL}/find_prestamo_by_fecha_prestamo/?item_fecha_prestamo=${item_fecha_prestamo}`
-	);
+	const response = await fetch(`${BASE_URL}/find_prestamo_by_fecha_prestamo/?item_fecha_prestamo=${item_fecha_prestamo}`);
 
 	const items = await response.json();
 
@@ -183,9 +181,7 @@ async function find_prestamo_by_cuotas_totales(event) {
 	event.preventDefault();
 	const item_cuotas_totales = document.getElementById("prestamo_cuotas_totales").value;
 
-	const response = await fetch(
-		`${BASE_URL}/find_prestamo_by_cuotas_totales/?item_cuotas_totales=${item_cuotas_totales}`
-	);
+	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_totales/?item_cuotas_totales=${item_cuotas_totales}`);
 
 	const items = await response.json();
 
@@ -202,9 +198,7 @@ async function find_prestamo_by_cuotas_restantes(event) {
 	event.preventDefault();
 	const item_cuotas_restantes = document.getElementById("prestamo_cuotas_restantes").value;
 
-	const response = await fetch(
-		`${BASE_URL}/find_prestamo_by_cuotas_restantes/?item_cuotas_restantes=${item_cuotas_restantes}`
-	);
+	const response = await fetch(`${BASE_URL}/find_prestamo_by_cuotas_restantes/?item_cuotas_restantes=${item_cuotas_restantes}`);
 
 	const items = await response.json();
 
@@ -252,14 +246,13 @@ async function find_prestamo_by_garante(event) {
 }
 
 async function devolverinnerHTML(items) {
-
 	const response_prestatario = await fetch(`${BASE_URL}/find_prestatario_by_id/?item_id=${items.prestatario_id}`);
 
 	const item_prestatario = await response_prestatario.json();
 
 	const response_garante = await fetch(`${BASE_URL}/find_garante_by_id/?item_id=${items.garante_id}`);
 
-	const item_garante = await response_garante.json();	
+	const item_garante = await response_garante.json();
 
 	return (
 		`<div class="items_recuperados">` +
@@ -284,7 +277,7 @@ async function completarFormularioUpdate(item_id) {
 	const response = await fetch(`${BASE_URL}/find_prestamo_by_id/?item_id=${item_id}`);
 
 	const lista_items = await response.json();
-	const items = lista_items[0]
+	const items = lista_items[0];
 
 	// asigna valores al formulario de "actualizar"
 	document.getElementById("prestamo_update_id").value = items.id;
@@ -309,29 +302,28 @@ async function completarFormularioUpdate(item_id) {
 }
 
 async function llenarSelect(selectId, funcion) {
-    const select = document.getElementById(selectId);
+	const select = document.getElementById(selectId);
 
 	const response = await fetch(`${BASE_URL}/${funcion}/`);
 
 	const items = await response.json();
-    
-    items.forEach(objeto => {
-        const option = document.createElement('option');
-        option.value = objeto.id; // Valor que se enviará al servidor
-        option.textContent = objeto.nombre+" "+objeto.apellido+" - DNI: "+objeto.dni; // Texto que verá el usuario
-        select.appendChild(option);
-    });
+
+	items.forEach((objeto) => {
+		const option = document.createElement("option");
+		option.value = objeto.id; // Valor que se enviará al servidor
+		option.textContent = objeto.nombre + " " + objeto.apellido + " - DNI: " + objeto.dni; // Texto que verá el usuario
+		select.appendChild(option);
+	});
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    llenarSelect('prestatario_id', "find_all_prestatario");
-    llenarSelect('garante_id', "find_all_garante");
-	llenarSelect('prestamo_update_prestatario_id', 'find_all_prestatario');
-	llenarSelect('prestamo_update_garante_id', 'find_all_garante');
-	llenarSelect('prestamo_prestatario_id', 'find_all_prestatario');
-	llenarSelect('prestamo_garante_id', 'find_all_garante');
+document.addEventListener("DOMContentLoaded", () => {
+	llenarSelect("prestatario_id", "find_all_prestatario");
+	llenarSelect("garante_id", "find_all_garante");
+	llenarSelect("prestamo_update_prestatario_id", "find_all_prestatario");
+	llenarSelect("prestamo_update_garante_id", "find_all_garante");
+	llenarSelect("prestamo_prestatario_id", "find_all_prestatario");
+	llenarSelect("prestamo_garante_id", "find_all_garante");
 });
-
 
 (function () {
 	const tabs = document.querySelectorAll(".tab-btn");

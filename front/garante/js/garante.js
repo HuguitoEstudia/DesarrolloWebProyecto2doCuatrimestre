@@ -129,9 +129,7 @@ async function find_garante_by_nombre_apellido(event) {
 
 	const item_apellido = document.getElementById("garante_apellido").value;
 
-	const response = await fetch(
-		`${BASE_URL}/find_garante_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`
-	);
+	const response = await fetch(`${BASE_URL}/find_garante_by_nombre_apellido/?item_nombre=${item_nombre}&item_apellido=${item_apellido}`);
 
 	const items = await response.json();
 
@@ -201,7 +199,6 @@ async function completarFormularioUpdate(item_id) {
 	const panel = document.getElementById("actualizar");
 	if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
 }
-
 
 (function () {
 	const tabs = document.querySelectorAll(".tab-btn");
